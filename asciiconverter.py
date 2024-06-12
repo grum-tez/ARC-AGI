@@ -7,6 +7,11 @@ with open('data/training/0a938d79.json', 'r') as file:
 # Extract the "train" array
 train_array = data['train']
 
-# Iterate through each element of the "train" array and print it
-for element in train_array:
-    print(element)
+# Create and write to a .txt file
+with open('train_elements.txt', 'w') as txt_file:
+    for index, element in enumerate(train_array):
+        txt_file.write(f"Element {index}: {element}\n")
+
+# Read and print the contents of the .txt file
+with open('train_elements.txt', 'r') as txt_file:
+    print(txt_file.read())
