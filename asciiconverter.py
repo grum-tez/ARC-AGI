@@ -7,5 +7,6 @@ with open('data/training/0a938d79.json', 'r') as file:
 # Extract the "train" array
 train_array = data['train']
 
-# Print the "train" array
-print(train_array)
+# Iterate through each element of the "train" array and print it
+for element in train_array:
+    print(element)
