@@ -27,18 +27,8 @@ def array_to_ascii_art(array):
             ascii_art += '\n'  # Newline at the end of each row except the last one
     return ascii_art
 
-# Function to convert array to ASCII art
-def convert_grid(array):
-    ascii_art = ""
-    for i, row in enumerate(array):
-        for num in row:
-            ascii_art += mapping.get(num, ' ')  # Use ' ' (space) for any unmapped numbers
-        if i < len(array) - 1:
-            ascii_art += '\n'  # Newline at the end of each row except the last one
-    return ascii_art
-
 # Function to convert ASCII art back to array
-def convert_back_grid(ascii_art):
+def convert_back(ascii_art):
     array = []
     for line in ascii_art.split('\n'):
         row = []
