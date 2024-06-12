@@ -112,4 +112,4 @@ def build_prompts(json_file_path):
             combined_md_file.write(convert_grid(element['input']))
             combined_md_file.write("```\n\n")
 
-        combined_md_file.write("\nReturn a single code block with the language indicated as ascii as your response\n")
+        combined_md_file.write("\nProduce a single code block with the language indicated as ascii as your response. Then reflect on that code block. Reason aloud. Consider how both how it does, and does not reflect the examples you were given. Then make a final attempt, again produce a single code block with the language indicated as ascii as your response.\n")
