@@ -49,4 +49,20 @@ class TestAsciiConverter(unittest.TestCase):
             ascii_art = array_to_ascii_art(original_array)
             converted_back_array = convert_back(ascii_art)
             self.assertEqual(original_array, converted_back_array)
+    def test_hardcoded_json_conversion(self):
+        # Hardcoded first input matrix from the JSON file
+        original_array = [
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 6, 6, 0, 6, 6, 0],
+            [0, 6, 0, 0, 0, 6, 0],
+            [0, 6, 6, 6, 6, 6, 0]
+        ]
+        ascii_art = array_to_ascii_art(original_array)
+        converted_back_array = convert_back(ascii_art)
+        self.assertEqual(original_array, converted_back_array)
+
+if __name__ == "__main__":
     unittest.main()
