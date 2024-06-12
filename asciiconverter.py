@@ -107,23 +107,3 @@ def build_prompts(json_file_path):
             combined_md_file.write("```\n\n")
 
         combined_md_file.write("\nReturn a single code block with the language indicated as ascii as your response\n")
-        md_file.write("# Pattern recreation challenge\n\n")
-        md_file.write("## Pattern examples\n\n")
-        for index, element in enumerate(train_array):
-            md_file.write(f"### Pattern example {index + 1}\n")
-            md_file.write("#### Input\n")
-            md_file.write("```ascii\n")
-            md_file.write(convert_grid(element['input']))
-            md_file.write("```\n\n")
-            md_file.write("#### Output\n")
-            md_file.write("```ascii\n")
-            md_file.write(convert_grid(element['output']))
-            md_file.write("```\n\n")
-
-    with open(test_md_path, 'w') as md_file:
-        for index, element in enumerate(test_array):
-            md_file.write(f"## Challenge {index + 1}\n")
-            md_file.write("### Input\n")
-            md_file.write("```ascii\n")
-            md_file.write(convert_grid(element['input']))
-            md_file.write("```\n\n")
