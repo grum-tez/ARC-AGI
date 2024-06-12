@@ -24,8 +24,12 @@ class TestAsciiConverter(unittest.TestCase):
         ]
 
     def extract_sample_arrays(self, json_file_path):
-        with open(json_file_path, 'r') as file:
-            data = json.load(file)
+        try:
+            with open(json_file_path, 'r') as file:
+                data = json.load(file)
+        except json.JSONDecodeError as e:
+            print(f"Error decoding JSON from {json_file_path}: {e}")
+            return []
         
         arrays = []
         for element in data['train']:
