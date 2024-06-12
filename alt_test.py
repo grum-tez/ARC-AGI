@@ -11,6 +11,14 @@ class TestAltFunctions(unittest.TestCase):
         expected_ascii_art = "|*|#|@|\n---|---|---\n|%|&|O|\n---|---|---\n|$|X|~|"
         
         ascii_art = convert_grid(original_array)
+        print("ORIGINAL ARRAY:")
+        for row in original_array:
+            print(row)
+        print("ASCII ART:")
+        print(ascii_art)
+        print("RECREATED ARRAY:")
+        for row in convert_back_grid(ascii_art):
+            print(row)
         self.assertEqual(ascii_art, expected_ascii_art)
         
         converted_back_array = convert_back_grid(ascii_art)
