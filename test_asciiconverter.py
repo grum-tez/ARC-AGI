@@ -117,24 +117,24 @@ class TestAsciiConverter(unittest.TestCase):
             with self.subTest(i=i):
                 self.check_matrix(array)
         # Hardcoded fourth input matrix from the JSON file
-        original_array = [
-            [0, 2, 2, 2, 2, 0, 0, 0, 0, 0],
-            [0, 2, 0, 0, 2, 0, 0, 0, 0, 0],
-            [0, 2, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 2, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 2, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 2, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 2, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 2, 0, 0, 2, 0, 0, 0, 0, 0],
-            [0, 2, 2, 2, 2, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-        ]
+        # original_array = [
+        #     [0, 2, 2, 2, 2, 0, 0, 0, 0, 0],
+        #     [0, 2, 0, 0, 2, 0, 0, 0, 0, 0],
+        #     [0, 2, 0, 0, 0, 0, 0, 0, 0, 0],
+        #     [0, 2, 0, 0, 0, 0, 0, 0, 0, 0],
+        #     [0, 2, 0, 0, 0, 0, 0, 0, 0, 0],
+        #     [0, 2, 0, 0, 0, 0, 0, 0, 0, 0],
+        #     [0, 2, 0, 0, 0, 0, 0, 0, 0, 0],
+        #     [0, 2, 0, 0, 2, 0, 0, 0, 0, 0],
+        #     [0, 2, 2, 2, 2, 0, 0, 0, 0, 0],
+        #     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        # ]
 
-        ascii_art = array_to_ascii_art(original_array)
+        # ascii_art = array_to_ascii_art(original_array)
 
-        converted_back_array = convert_back(ascii_art)
+        # converted_back_array = convert_back(ascii_art)
 
-        self.assertEqual(original_array, converted_back_array)
+        # self.assertEqual(original_array, converted_back_array)
 
 if __name__ == "__main__":
 
