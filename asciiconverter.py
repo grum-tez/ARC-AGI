@@ -57,7 +57,7 @@ def convert_back(ascii_art):
     for line in ascii_art.strip().split('\n'):
         row = []
         for char in line:
-            row.append(reverse_mapping.get(char, 0))  # Use 0 for any unmapped characters
+            row.append(reverse_mapping.get(char, 0 if char == ' ' else char))  # Use 0 for any unmapped characters
         array.append(row)
     return array
 
