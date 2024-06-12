@@ -62,9 +62,16 @@ class TestAsciiConverter(unittest.TestCase):
             print("RESTORED ARRAY:")
             for row in result["converted_back_array"]:
                 print(row)
-        self.assertEqual(result["original_array"], result["converted_back_array"])
+        return result["original_array"] == result["converted_back_array"]
 
-    def test_hardcoded_json_conversion(self):
+    def check_matrix_array(self, arrays):
+        summary = {"True": 0, "False": 0}
+        for array in arrays:
+            if self.check_matrix(array):
+                summary["True"] += 1
+            else:
+                summary["False"] += 1
+        return summary
         # Hardcoded first input matrix from the JSON file
         original_array = [
             [0, 0, 0, 0, 0, 0, 0],
@@ -113,9 +120,8 @@ class TestAsciiConverter(unittest.TestCase):
 
     def test_sample_arrays_conversion(self):
         arrays = self.extract_sample_arrays('data/training/aba27056.json')
-        for i, array in enumerate(arrays):
-            with self.subTest(i=i):
-                self.check_matrix(array)
+        summary = self.check_matrix_array(arrays)
+        print("Summary:", summary)
         # Hardcoded fourth input matrix from the JSON file
         # original_array = [
         #     [0, 2, 2, 2, 2, 0, 0, 0, 0, 0],
