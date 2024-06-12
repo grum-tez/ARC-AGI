@@ -40,11 +40,15 @@ class TestAsciiConverter(unittest.TestCase):
         for element in data['train']:
             for key in ['input', 'output']:
                 original_array = element[key]
-                print("ORIGINAL ARRAY:", original_array)
+                print("ORIGINAL ARRAY:")
+                for row in original_array:
+                    print(row)
                 ascii_art = array_to_ascii_art(original_array)
                 print("ASCII ART STRING:", ascii_art)
                 converted_back_array = convert_back(ascii_art)
-                print("RESTORED ARRAY:", converted_back_array)
+                print("RESTORED ARRAY:")
+                for row in converted_back_array:
+                    print(row)
                 self.assertEqual(original_array, converted_back_array)
 
         for element in data['test']:
@@ -63,11 +67,15 @@ class TestAsciiConverter(unittest.TestCase):
             [0, 6, 0, 0, 0, 6, 0],
             [0, 6, 6, 6, 6, 6, 0]
         ]
-        print("ORIGINAL ARRAY:", original_array)
+        print("ORIGINAL ARRAY:")
+        for row in original_array:
+            print(row)
         ascii_art = array_to_ascii_art(original_array)
         print("ASCII ART STRING:", ascii_art)
         converted_back_array = convert_back(ascii_art)
-        print("RESTORED ARRAY:", converted_back_array)
+        print("RESTORED ARRAY:")
+        for row in converted_back_array:
+            print(row)
         self.assertEqual(original_array, converted_back_array)
 
 if __name__ == "__main__":
