@@ -47,9 +47,14 @@ class TestAsciiConverter(unittest.TestCase):
             with self.subTest(case=case):
                 self.assertEqual(convert_back(case["ascii_art"]), case["array"])
 
-    def convert_and_back(self, array):
-        ascii_art = array_to_ascii_art(array)
-        converted_back_array = convert_back(ascii_art)
+    def convert_and_back(self, array, conversion_method=None):
+        if conversion_method == "grid":
+            from altfunctions import convert_grid, convert_back_grid
+            ascii_art = convert_grid(array)
+            converted_back_array = convert_back_grid(ascii_art)
+        else:
+            ascii_art = array_to_ascii_art(array)
+            converted_back_array = convert_back(ascii_art)
         return {
             "original_array": array,
             "ascii_art": ascii_art,
