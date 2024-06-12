@@ -23,7 +23,20 @@ class TestAsciiConverter(unittest.TestCase):
             }
         ]
 
-    def test_array_to_ascii_art(self):
+    def extract_sample_arrays(self, json_file_path):
+        with open(json_file_path, 'r') as file:
+            data = json.load(file)
+        
+        arrays = []
+        for element in data['train']:
+            arrays.append(element['input'])
+            arrays.append(element['output'])
+        
+        for element in data['test']:
+            arrays.append(element['input'])
+            arrays.append(element['output'])
+        
+        return arrays
         for case in self.test_cases:
             with self.subTest(case=case):
                 self.assertEqual(array_to_ascii_art(case["array"]), case["ascii_art"])
@@ -149,4 +162,10 @@ class TestAsciiConverter(unittest.TestCase):
         self.assertEqual(original_array, converted_back_array)
 
 if __name__ == "__main__":
+    # Example usage of extract_sample_arrays
+    arrays = TestAsciiConverter().extract_sample_arrays('data/training/aba27056.json')
+    for i, array in enumerate(arrays):
+        print(f"Array {i}:")
+        for row in array:
+            print(row)
     unittest.main()
