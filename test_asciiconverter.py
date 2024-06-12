@@ -1,4 +1,5 @@
 import unittest
+import json
 from asciiconverter import array_to_ascii_art, convert_back
 
 class TestAsciiConverter(unittest.TestCase):
@@ -32,5 +33,20 @@ class TestAsciiConverter(unittest.TestCase):
             with self.subTest(case=case):
                 self.assertEqual(convert_back(case["ascii_art"]), case["array"])
 
-if __name__ == "__main__":
+    def test_json_conversion(self):
+        with open('data/training/0a938d79.json', 'r') as file:
+            data = json.load(file)
+
+        for element in data['train']:
+            for key in ['input', 'output']:
+                original_array = element[key]
+                ascii_art = array_to_ascii_art(original_array)
+                converted_back_array = convert_back(ascii_art)
+                self.assertEqual(original_array, converted_back_array)
+
+        for element in data['test']:
+            original_array = element['input']
+            ascii_art = array_to_ascii_art(original_array)
+            converted_back_array = convert_back(ascii_art)
+            self.assertEqual(original_array, converted_back_array)
     unittest.main()
