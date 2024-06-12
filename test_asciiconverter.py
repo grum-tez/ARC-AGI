@@ -113,13 +113,9 @@ class TestAsciiConverter(unittest.TestCase):
 
     def test_sample_arrays_conversion(self):
         arrays = self.extract_sample_arrays('data/training/aba27056.json')
-        for i, original_array in enumerate(arrays):
+        for i, array in enumerate(arrays):
             with self.subTest(i=i):
-
-                ascii_art = array_to_ascii_art(original_array)
-                converted_back_array = convert_back(ascii_art)
-
-                self.assertEqual(original_array, converted_back_array)
+                self.check_matrix(array)
         # Hardcoded fourth input matrix from the JSON file
         original_array = [
             [0, 2, 2, 2, 2, 0, 0, 0, 0, 0],
