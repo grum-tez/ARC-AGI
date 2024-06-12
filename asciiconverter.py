@@ -20,19 +20,25 @@ reverse_mapping[' '] = 0  # Add this line to map spaces back to zeroes
 # Function to convert array to ASCII art
 def array_to_ascii_art(array):
     ascii_art = ""
-    for row in array:
+    for i, row in enumerate(array):
         for num in row:
             ascii_art += mapping.get(num, ' ')  # Use ' ' (space) for any unmapped numbers
-        ascii_art += '\n'  # Newline at the end of each row
+        if i < len(array) - 1:
+            ascii_art += '\n'  # Newline at the end of each row except the last one
     return ascii_art
 
 # Function to convert ASCII art back to array
 def convert_back(ascii_art):
     array = []
     for line in ascii_art.split('\n'):
-        if line.strip():  # Check if the line is not empty
-            row = []
-            for char in line:
-                row.append(reverse_mapping.get(char, 0))  # Use 0 for any unmapped characters
-            array.append(row)
+        row = []
+        for char in line:
+            row.append(reverse_mapping.get(char, 0))  # Use 0 for any unmapped characters
+        array.append(row)
+    
+    # Ensure we correctly handle cases where lines are empty (completely zero rows)
+    max_length = max(len(row) for row in array)
+    for row in array:
+        while len(row) < max_length:
+            row.append(0)
     return array

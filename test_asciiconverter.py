@@ -11,7 +11,7 @@ class TestAsciiConverter(unittest.TestCase):
                     [3, 4, 5],
                     [6, 7, 8]
                 ],
-                "ascii_art": " *#\n@%&\nO$X\n"
+                "ascii_art": " *#\n@%&\nO$X"
             },
             {
                 "array": [
@@ -19,7 +19,7 @@ class TestAsciiConverter(unittest.TestCase):
                     [2, 2, 2],
                     [3, 3, 3]
                 ],
-                "ascii_art": "***\n###\n@@@\n"
+                "ascii_art": "***\n###\n@@@"
             }
         ]
 
