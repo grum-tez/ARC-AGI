@@ -53,6 +53,7 @@ def build_prompts(json_file_path):
     # Delete the prompts folder if it exists
     if os.path.exists('prompts'):
         shutil.rmtree('prompts')
+    with open(json_file_path, 'r') as file:
         data = json.load(file)
 
     train_array = data['train']
