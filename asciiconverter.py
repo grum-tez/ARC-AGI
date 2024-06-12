@@ -13,7 +13,10 @@ with open('train_elements.md', 'w') as md_file:
     md_file.write("## Pattern examples\n\n")
     for index, element in enumerate(train_array):
         md_file.write(f"### Pattern example {index + 1}\n")
-        md_file.write(f"{element}\n\n")
+        md_file.write("#### Input\n")
+        md_file.write(f"{element['input']}\n\n")
+        md_file.write("#### Output\n")
+        md_file.write(f"{element['output']}\n\n")
 
 # Read and print the contents of the .md file
 with open('train_elements.md', 'r') as md_file:
