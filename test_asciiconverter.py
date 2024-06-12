@@ -136,7 +136,21 @@ class TestAsciiConverter(unittest.TestCase):
             print(row)
         self.assertEqual(original_array, converted_back_array)
 
-    def test_hardcoded_json_conversion_4(self):
+    def test_sample_arrays_conversion(self):
+        arrays = self.extract_sample_arrays('data/training/aba27056.json')
+        for i, original_array in enumerate(arrays):
+            with self.subTest(i=i):
+                print(f"Testing array {i}:")
+                print("ORIGINAL ARRAY:")
+                for row in original_array:
+                    print(row)
+                ascii_art = array_to_ascii_art(original_array)
+                print("ASCII ART STRING:", ascii_art)
+                converted_back_array = convert_back(ascii_art)
+                print("RESTORED ARRAY:")
+                for row in converted_back_array:
+                    print(row)
+                self.assertEqual(original_array, converted_back_array)
         # Hardcoded fourth input matrix from the JSON file
         original_array = [
             [0, 2, 2, 2, 2, 0, 0, 0, 0, 0],
