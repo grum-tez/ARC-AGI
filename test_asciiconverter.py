@@ -71,12 +71,21 @@ class TestAsciiConverter(unittest.TestCase):
                 summary["True"] += 1
             else:
                 summary["False"] += 1
+        assert summary["False"] == 0, f"Found {summary['False']} matrices that failed conversion."
         return summary
 
-    def test_sample_arrays_conversion(self):
-        arrays = self.extract_sample_arrays('data/training/aba27056.json')
-        summary = self.check_matrix_array(arrays)
-        print("Summary:", summary)
+    def test_all_json_files_in_training_folder(self):
+        import os
+
+        training_folder = 'data/training'
+        json_files = [f for f in os.listdir(training_folder) if f.endswith('.json')]
+
+        for json_file in json_files:
+            json_file_path = os.path.join(training_folder, json_file)
+            arrays = self.extract_sample_arrays(json_file_path)
+            summary = self.check_matrix_array(arrays)
+            print(f"Summary for {json_file}:", summary)
+        self.test_all_json_files_in_training_folder()
 
 
 if __name__ == "__main__":
