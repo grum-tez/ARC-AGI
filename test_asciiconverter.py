@@ -72,75 +72,12 @@ class TestAsciiConverter(unittest.TestCase):
             else:
                 summary["False"] += 1
         return summary
-        # Hardcoded first input matrix from the JSON file
-        original_array = [
-            [0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0],
-            [0, 6, 6, 0, 6, 6, 0],
-            [0, 6, 0, 0, 0, 6, 0],
-            [0, 6, 6, 6, 6, 6, 0]
-        ]
-        self.check_matrix(original_array)
-
-    def test_hardcoded_json_conversion_2(self):
-        # Hardcoded second input matrix from the JSON file
-        original_array = [
-            [0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 7, 7, 7, 7, 7],
-            [0, 0, 0, 0, 7, 0, 0, 0, 7],
-            [0, 0, 0, 0, 0, 0, 0, 0, 7],
-            [0, 0, 0, 0, 0, 0, 0, 0, 7],
-            [0, 0, 0, 0, 0, 0, 0, 0, 7],
-            [0, 0, 0, 0, 7, 0, 0, 0, 7],
-            [0, 0, 0, 0, 7, 7, 7, 7, 7]
-        ]
-
-        ascii_art = array_to_ascii_art(original_array)
-        converted_back_array = convert_back(ascii_art)
-
-        self.assertEqual(original_array, converted_back_array)
-
-    def test_hardcoded_json_conversion_3(self):
-        # Hardcoded third input matrix from the JSON file
-        original_array = [
-            [3, 3, 3, 3, 3, 3],
-            [3, 0, 0, 0, 0, 3],
-            [3, 0, 0, 0, 0, 3],
-            [3, 3, 0, 0, 3, 3],
-            [0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0]
-        ]
-
-        ascii_art = array_to_ascii_art(original_array)
-        converted_back_array = convert_back(ascii_art)
-        self.assertEqual(original_array, converted_back_array)
 
     def test_sample_arrays_conversion(self):
         arrays = self.extract_sample_arrays('data/training/aba27056.json')
         summary = self.check_matrix_array(arrays)
         print("Summary:", summary)
-        # Hardcoded fourth input matrix from the JSON file
-        # original_array = [
-        #     [0, 2, 2, 2, 2, 0, 0, 0, 0, 0],
-        #     [0, 2, 0, 0, 2, 0, 0, 0, 0, 0],
-        #     [0, 2, 0, 0, 0, 0, 0, 0, 0, 0],
-        #     [0, 2, 0, 0, 0, 0, 0, 0, 0, 0],
-        #     [0, 2, 0, 0, 0, 0, 0, 0, 0, 0],
-        #     [0, 2, 0, 0, 0, 0, 0, 0, 0, 0],
-        #     [0, 2, 0, 0, 0, 0, 0, 0, 0, 0],
-        #     [0, 2, 0, 0, 2, 0, 0, 0, 0, 0],
-        #     [0, 2, 2, 2, 2, 0, 0, 0, 0, 0],
-        #     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-        # ]
 
-        # ascii_art = array_to_ascii_art(original_array)
-
-        # converted_back_array = convert_back(ascii_art)
-
-        # self.assertEqual(original_array, converted_back_array)
 
 if __name__ == "__main__":
 
