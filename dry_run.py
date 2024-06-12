@@ -33,3 +33,6 @@ print(input_ascii)
 output_ascii = array_to_ascii_art(first_element['output'])
 print("Output matrix in ASCII:")
 print(output_ascii)
+
+# Run build_prompts on the chosen JSON file
+build_prompts(json_file_path)
