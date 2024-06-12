@@ -18,5 +18,6 @@ def convert_back_grid(ascii_art):
             row = row[1:]  # Remove leading '|'
         if row.endswith("|"):
             row = row[:-1]  # Remove trailing '|'
-        array.append([reverse_mapping.get(char, 0) for char in row.split("|") if char])
+        if row.strip("-"):  # Ignore rows that are just horizontal lines
+            array.append([reverse_mapping.get(char, 0) for char in row.split("|") if char])
     return array
