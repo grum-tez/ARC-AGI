@@ -80,6 +80,7 @@ class TestAsciiConverter(unittest.TestCase):
         for element in data['test']:
             original_array = element['input']
             self.check_matrix(original_array)
+            
     def test_hardcoded_json_conversion(self):
         # Hardcoded first input matrix from the JSON file
         original_array = [
