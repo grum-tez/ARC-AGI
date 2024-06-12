@@ -1,8 +1,8 @@
 import json
 import os
 import random
-
 from altfunctions import convert_grid, convert_back_grid
+
 
 # Define the mapping for numbers 1 to 9 with the specified swaps
 mapping = {
@@ -76,7 +76,6 @@ def build_prompts(json_file_path):
             md_file.write("```\n\n")
 
     with open(test_md_path, 'w') as md_file:
-        md_file.write("# Recreate this Pattern\n\n")
         for index, element in enumerate(test_array):
             md_file.write(f"## Challenge {index + 1}\n")
             md_file.write("### Input\n")

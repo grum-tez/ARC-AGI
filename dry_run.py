@@ -2,7 +2,6 @@ import json
 import os
 import random
 from asciiconverter import array_to_ascii_art, build_prompts
-from altfunctions import convert_grid, convert_back_grid
 
 # Get a random JSON file from the training folder
 training_folder = 'data/training'

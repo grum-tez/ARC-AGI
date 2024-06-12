@@ -1,4 +1,21 @@
-from asciiconverter import mapping, reverse_mapping
+
+
+# Define the mapping for numbers 1 to 9 with the specified swaps
+mapping = {
+    1: '*',
+    2: '#',
+    3: '@',
+    4: '%',
+    5: '&',
+    6: 'O',
+    7: '$',
+    8: 'X',
+    9: '~'
+}
+
+# Reverse mapping for converting ASCII art back to array
+reverse_mapping = {v: k for k, v in mapping.items()}
+reverse_mapping[' '] = 0  # Add this line to map spaces back to zeroes
 
 def convert_grid(array):
     ascii_art = ""
