@@ -1,4 +1,4 @@
-# Function to convert array to ASCII art with cell borders and row separators
+from asciiconverter import mapping, reverse_mapping
 def convert_grid(array):
     ascii_art = ""
     for i, row in enumerate(array):
