@@ -46,7 +46,26 @@ class TestAsciiConverter(unittest.TestCase):
             with self.subTest(case=case):
                 self.assertEqual(convert_back(case["ascii_art"]), case["array"])
 
-    def test_json_conversion(self):
+    def convert_and_back(self, array):
+        ascii_art = array_to_ascii_art(array)
+        converted_back_array = convert_back(ascii_art)
+        return {
+            "original_array": array,
+            "ascii_art": ascii_art,
+            "converted_back_array": converted_back_array
+        }
+
+    def check_matrix(self, array):
+        result = self.convert_and_back(array)
+        if result["original_array"] != result["converted_back_array"]:
+            print("ORIGINAL ARRAY:")
+            for row in result["original_array"]:
+                print(row)
+            print("ASCII ART STRING:", result["ascii_art"])
+            print("RESTORED ARRAY:")
+            for row in result["converted_back_array"]:
+                print(row)
+        self.assertEqual(result["original_array"], result["converted_back_array"])
         with open('data/training/0a938d79.json', 'r') as file:
             data = json.load(file)
 
@@ -56,19 +75,11 @@ class TestAsciiConverter(unittest.TestCase):
                 print("ORIGINAL ARRAY:")
                 for row in original_array:
                     print(row)
-                ascii_art = array_to_ascii_art(original_array)
-                print("ASCII ART STRING:", ascii_art)
-                converted_back_array = convert_back(ascii_art)
-                print("RESTORED ARRAY:")
-                for row in converted_back_array:
-                    print(row)
-                self.assertEqual(original_array, converted_back_array)
+                self.check_matrix(original_array)
 
         for element in data['test']:
             original_array = element['input']
-            ascii_art = array_to_ascii_art(original_array)
-            converted_back_array = convert_back(ascii_art)
-            self.assertEqual(original_array, converted_back_array)
+            self.check_matrix(original_array)
     def test_hardcoded_json_conversion(self):
         # Hardcoded first input matrix from the JSON file
         original_array = [
