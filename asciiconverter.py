@@ -39,6 +39,9 @@ mapping = {
     9: '~'
 }
 
+# Reverse mapping for converting ASCII art back to array
+reverse_mapping = {v: k for k, v in mapping.items()}
+
 # Function to convert array to ASCII art
 def array_to_ascii_art(array):
     ascii_art = ""
@@ -47,6 +50,16 @@ def array_to_ascii_art(array):
             ascii_art += mapping.get(num, ' ')  # Use ' ' (space) for any unmapped numbers
         ascii_art += '\n'  # Newline at the end of each row
     return ascii_art
+
+# Function to convert ASCII art back to array
+def convert_back(ascii_art):
+    array = []
+    for line in ascii_art.strip().split('\n'):
+        row = []
+        for char in line:
+            row.append(reverse_mapping.get(char, 0))  # Use 0 for any unmapped characters
+        array.append(row)
+    return array
 
 # Read the JSON file
 with open('data/training/0a938d79.json', 'r') as file:
