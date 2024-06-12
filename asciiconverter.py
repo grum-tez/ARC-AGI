@@ -7,11 +7,14 @@ with open('data/training/0a938d79.json', 'r') as file:
 # Extract the "train" array
 train_array = data['train']
 
-# Create and write to a .txt file
-with open('train_elements.txt', 'w') as txt_file:
+# Create and write to a .md file
+with open('train_elements.md', 'w') as md_file:
+    md_file.write("# Pattern recreation challenge\n\n")
+    md_file.write("## Pattern examples\n\n")
     for index, element in enumerate(train_array):
-        txt_file.write(f"Element {index}: {element}\n")
+        md_file.write(f"### Pattern example {index + 1}\n")
+        md_file.write(f"{element}\n\n")
 
-# Read and print the contents of the .txt file
-with open('train_elements.txt', 'r') as txt_file:
-    print(txt_file.read())
+# Read and print the contents of the .md file
+with open('train_elements.md', 'r') as md_file:
+    print(md_file.read())
