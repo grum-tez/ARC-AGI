@@ -84,11 +84,11 @@ class TestAsciiConverter(unittest.TestCase):
         training_folder = 'data/training'
         json_files = [f for f in os.listdir(training_folder) if f.endswith('.json')]
 
-        # for json_file in json_files:
-        #     json_file_path = os.path.join(training_folder, json_file)
-        #     arrays = self.extract_sample_arrays(json_file_path)
-        #     summary = self.check_matrix_array(arrays)
-        #     print(f"Summary for {json_file}:", summary)
+        for json_file in json_files[:20]:
+            json_file_path = os.path.join(training_folder, json_file)
+            arrays = self.extract_sample_arrays(json_file_path)
+            summary = self.check_matrix_array(arrays)
+            print(f"Summary for {json_file}:", summary)
         print(f"Number of JSON files: {len(json_files)}")
 
 
