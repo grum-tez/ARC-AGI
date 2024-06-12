@@ -1,6 +1,6 @@
 import unittest
 from altfunctions import convert_grid, convert_back_grid
-from test_asciiconverter import TestAsciiConverter, extract_sample_arrays
+from test_asciiconverter import TestAsciiConverter
 
 class TestAltFunctions(unittest.TestCase):
     def test_basic_matrix_conversion(self):
@@ -60,7 +60,7 @@ class TestAltFunctions(unittest.TestCase):
 
         for json_file in json_files[:400]:
             json_file_path = os.path.join(training_folder, json_file)
-            arrays = extract_sample_arrays(json_file_path)
+            arrays = TestAsciiConverter().extract_sample_arrays(json_file_path)
             summary = self.check_matrix_array(arrays)
             if summary["False"] == 0:
                 false_zero_count += 1

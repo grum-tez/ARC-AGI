@@ -7,7 +7,7 @@ def convert_grid(array):
         for num in row:
             ascii_art += mapping.get(num, ' ') + "|"
         if i < len(array) - 1:
-            ascii_art += "\n" + "-" * (len(row) * 4 - 1) + "\n"  # Horizontal line to separate rows
+            ascii_art += "\n" + "-" * (len(row) * 2 + 1) + "\n"  # Horizontal line to separate rows
     return ascii_art
 
 def convert_back_grid(ascii_art):
