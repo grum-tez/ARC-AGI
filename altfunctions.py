@@ -1,4 +1,5 @@
 from asciiconverter import mapping, reverse_mapping
+
 def convert_grid(array):
     ascii_art = ""
     for i, row in enumerate(array):
@@ -9,7 +10,6 @@ def convert_grid(array):
             ascii_art += "\n" + "---" * len(row) + "\n"  # Horizontal line to separate rows
     return ascii_art
 
-# Function to convert ASCII art back to array with cell borders and row separators
 def convert_back_grid(ascii_art):
     array = []
     rows = ascii_art.split("\n")
