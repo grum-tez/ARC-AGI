@@ -48,7 +48,11 @@ def convert_back(ascii_art):
     return array
 
 def build_prompts(json_file_path):
-    with open(json_file_path, 'r') as file:
+    import shutil
+
+    # Delete the prompts folder if it exists
+    if os.path.exists('prompts'):
+        shutil.rmtree('prompts')
         data = json.load(file)
 
     train_array = data['train']
@@ -56,6 +60,7 @@ def build_prompts(json_file_path):
 
     json_file_name = os.path.basename(json_file_path).replace('.json', '')
 
+    # Recreate the prompts folder
     os.makedirs('prompts', exist_ok=True)
 
     train_md_path = f'prompts/train_prompt_{json_file_name}.md'
