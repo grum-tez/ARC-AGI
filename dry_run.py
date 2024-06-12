@@ -1,45 +1,13 @@
 import json
-from asciiconverter import array_to_ascii_art
+import os
+import random
+from asciiconverter import array_to_ascii_art, build_prompts
 
-# Read the JSON file
-with open('data/training/0a938d79.json', 'r') as file:
-    data = json.load(file)
+# Get a random JSON file from the training folder
+training_folder = 'data/training'
+json_files = [f for f in os.listdir(training_folder) if f.endswith('.json')]
+random_json_file = random.choice(json_files)
+json_file_path = os.path.join(training_folder, random_json_file)
 
-# Extract the "train" array
-train_array = data['train']
-
-# Create and write to a .md file
-with open('train_elements.md', 'w') as md_file:
-    md_file.write("# Pattern recreation challenge\n\n")
-    md_file.write("## Pattern examples\n\n")
-    for index, element in enumerate(train_array):
-        md_file.write(f"### Pattern example {index + 1}\n")
-        md_file.write("#### Input\n")
-        md_file.write("```ascii\n")
-        md_file.write(array_to_ascii_art(element['input']))
-        md_file.write("```\n\n")
-        md_file.write("#### Output\n")
-        md_file.write("```ascii\n")
-        md_file.write(array_to_ascii_art(element['output']))
-        md_file.write("```\n\n")
-
-# Read and print the contents of the .md file
-with open('train_elements.md', 'r') as md_file:
-    print(md_file.read())
-
-# Extract the "test" array
-test_array = data['test']
-
-# Create and write to a .md file
-with open('recreate_this.md', 'w') as md_file:
-    md_file.write("# Recreate this Pattern\n\n")
-    for index, element in enumerate(test_array):
-        md_file.write(f"## Challenge {index + 1}\n")
-        md_file.write("### Input\n")
-        md_file.write("```ascii\n")
-        md_file.write(array_to_ascii_art(element['input']))
-        md_file.write("```\n\n")
-
-# Read and print the contents of the .md file
-with open('recreate_this.md', 'r') as md_file:
-    print(md_file.read())
+# Run build_prompts on the chosen JSON file
+build_prompts(json_file_path)

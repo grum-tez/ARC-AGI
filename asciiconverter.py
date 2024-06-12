@@ -42,3 +42,42 @@ def convert_back(ascii_art):
         while len(row) < max_length:
             row.append(0)
     return array
+import os
+import random
+
+def build_prompts(json_file_path):
+    with open(json_file_path, 'r') as file:
+        data = json.load(file)
+
+    train_array = data['train']
+    test_array = data['test']
+
+    json_file_name = os.path.basename(json_file_path).replace('.json', '')
+
+    os.makedirs('prompts', exist_ok=True)
+
+    train_md_path = f'prompts/train_prompt_{json_file_name}.md'
+    test_md_path = f'prompts/test_prompt_{json_file_name}.md'
+
+    with open(train_md_path, 'w') as md_file:
+        md_file.write("# Pattern recreation challenge\n\n")
+        md_file.write("## Pattern examples\n\n")
+        for index, element in enumerate(train_array):
+            md_file.write(f"### Pattern example {index + 1}\n")
+            md_file.write("#### Input\n")
+            md_file.write("```ascii\n")
+            md_file.write(array_to_ascii_art(element['input']))
+            md_file.write("```\n\n")
+            md_file.write("#### Output\n")
+            md_file.write("```ascii\n")
+            md_file.write(array_to_ascii_art(element['output']))
+            md_file.write("```\n\n")
+
+    with open(test_md_path, 'w') as md_file:
+        md_file.write("# Recreate this Pattern\n\n")
+        for index, element in enumerate(test_array):
+            md_file.write(f"## Challenge {index + 1}\n")
+            md_file.write("### Input\n")
+            md_file.write("```ascii\n")
+            md_file.write(array_to_ascii_art(element['input']))
+            md_file.write("```\n\n")
