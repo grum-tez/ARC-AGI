@@ -61,7 +61,52 @@ def build_prompts(json_file_path):
     train_md_path = f'prompts/train_prompt_{json_file_name}.md'
     test_md_path = f'prompts/test_prompt_{json_file_name}.md'
 
-    with open(train_md_path, 'w') as md_file:
+    combined_md_path = f'prompts/combined_prompts_{json_file_name}.md'
+
+    with open(train_md_path, 'w') as train_md_file, \
+         open(test_md_path, 'w') as test_md_file, \
+         open(combined_md_path, 'w') as combined_md_file:
+
+        train_md_file.write("# Pattern recreation challenge\n\n")
+        train_md_file.write("## Pattern examples\n\n")
+        combined_md_file.write("# Pattern recreation challenge\n\n")
+        combined_md_file.write("## Pattern examples\n\n")
+
+        for index, element in enumerate(train_array):
+            train_md_file.write(f"### Pattern example {index + 1}\n")
+            train_md_file.write("#### Input\n")
+            train_md_file.write("```ascii\n")
+            train_md_file.write(convert_grid(element['input']))
+            train_md_file.write("```\n\n")
+            train_md_file.write("#### Output\n")
+            train_md_file.write("```ascii\n")
+            train_md_file.write(convert_grid(element['output']))
+            train_md_file.write("```\n\n")
+
+            combined_md_file.write(f"### Pattern example {index + 1}\n")
+            combined_md_file.write("#### Input\n")
+            combined_md_file.write("```ascii\n")
+            combined_md_file.write(convert_grid(element['input']))
+            combined_md_file.write("```\n\n")
+            combined_md_file.write("#### Output\n")
+            combined_md_file.write("```ascii\n")
+            combined_md_file.write(convert_grid(element['output']))
+            combined_md_file.write("```\n\n")
+
+        for index, element in enumerate(test_array):
+            test_md_file.write(f"## Challenge {index + 1}\n")
+            test_md_file.write("### Input\n")
+            test_md_file.write("```ascii\n")
+            test_md_file.write(convert_grid(element['input']))
+            test_md_file.write("```\n\n")
+
+            combined_md_file.write(f"## Challenge {index + 1}\n")
+            combined_md_file.write("### Input\n")
+            combined_md_file.write("```ascii\n")
+            combined_md_file.write(convert_grid(element['input']))
+            combined_md_file.write("```\n\n")
+
+        combined_md_file.write("\nReturn a single code block with the language indicated as ascii as your response\n")
         md_file.write("# Pattern recreation challenge\n\n")
         md_file.write("## Pattern examples\n\n")
         for index, element in enumerate(train_array):
