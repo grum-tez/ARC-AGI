@@ -1,7 +1,7 @@
 import json
 import os
 import random
-from asciiconverter import array_to_ascii_art, build_prompts
+from asciiconverter import array_to_ascii_art, build_prompts, convert_grid
 
 # Get a random JSON file from the training folder
 training_folder = 'data/training'
@@ -25,12 +25,12 @@ print(f"Number of elements in the test array: {num_elements}")
 first_element = test_array[0]
 
 # Convert the input matrix to ASCII and print it
-input_ascii = array_to_ascii_art(first_element['input'])
+input_ascii = convert_grid(first_element['input'])
 print("Input matrix in ASCII:")
 print(input_ascii)
 
 # Convert the output matrix to ASCII and print it
-output_ascii = array_to_ascii_art(first_element['output'])
+output_ascii = convert_grid(first_element['output'])
 print("Output matrix in ASCII:")
 print(output_ascii)
 
