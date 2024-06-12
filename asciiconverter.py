@@ -15,6 +15,7 @@ mapping = {
 
 # Reverse mapping for converting ASCII art back to array
 reverse_mapping = {v: k for k, v in mapping.items()}
+reverse_mapping[' '] = 0  # Add this line to map spaces back to zeroes
 
 # Function to convert array to ASCII art
 def array_to_ascii_art(array):
@@ -28,9 +29,10 @@ def array_to_ascii_art(array):
 # Function to convert ASCII art back to array
 def convert_back(ascii_art):
     array = []
-    for line in ascii_art.strip().split('\n'):
-        row = []
-        for char in line:
-            row.append(reverse_mapping.get(char, 0))  # Use 0 for any unmapped characters
-        array.append(row)
+    for line in ascii_art.split('\n'):
+        if line.strip():  # Check if the line is not empty
+            row = []
+            for char in line:
+                row.append(reverse_mapping.get(char, 0))  # Use 0 for any unmapped characters
+            array.append(row)
     return array
