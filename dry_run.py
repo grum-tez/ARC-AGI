@@ -8,13 +8,20 @@ RUN_LOGS_FILE = 'run_logs.json'
 
 def save_last_run(json_file_path):
     with open(RUN_LOGS_FILE, 'w') as log_file:
-        json.dump({"last_run": json_file_path}, log_file)
+        if os.path.exists(RUN_LOGS_FILE):
+            data = json.load(log_file)
+            history = data.get("history", [])
+        else:
+            history = []
+
+        history.insert(0, json_file_path)
+        json.dump({"last_run": json_file_path, "history": history}, log_file)
 
 def get_last_run():
     if os.path.exists(RUN_LOGS_FILE):
         with open(RUN_LOGS_FILE, 'r') as log_file:
             data = json.load(log_file)
-            return data.get("last_run")
+            return data.get("last_run"), data.get("history", [])
     return None
 
 training_folder = 'data/training'
@@ -28,7 +35,7 @@ if len(sys.argv) > 1:
     else:
         json_file_path = arg
 else:
-    last_run = get_last_run()
+    last_run, history = get_last_run()
     if last_run and os.path.exists(last_run):
         json_file_path = last_run
     else:
