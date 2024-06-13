@@ -1,5 +1,5 @@
 import unittest
-from altfunctions import convert_grid, convert_back_grid, add_horizontal_borders, remove_horizontal_borders
+from altfunctions import convert_grid, convert_back_grid, add_borders, remove_borders
 from test_asciiconverter import TestAsciiConverter
 
 class TestAltFunctions(unittest.TestCase):\
@@ -15,6 +15,16 @@ class TestAltFunctions(unittest.TestCase):\
                 for row in result["converted_back_array"]:
                     print(row)
             return result["original_array"] == result["converted_back_array"]
+    
+    def check_matrix_array(self, arrays):
+        summary = {"True": 0, "False": 0}
+        for array in arrays:
+            if self.check_matrix(array):
+                summary["True"] += 1
+            else:
+                summary["False"] += 1
+        assert summary["False"] == 0, f"Found {summary['False']} matrices that failed conversion."
+        return summary
     
     def test_basic_matrix_conversion(self):
         print("tesing basic matrix conversion")
@@ -43,18 +53,30 @@ class TestAltFunctions(unittest.TestCase):\
 
     def test_add_and_remove_horizontal_borders(self):
         ascii_art = "|*|#|@|\n--|-|--\n|%|&|O|\n--|-|--\n|$|X|~|"
-        bordered_art = add_horizontal_borders(ascii_art)
+        bordered_art = add_borders(ascii_art)
         print("ASCII ART WITH BORDERS:")
         print(bordered_art)
         self.assertTrue(bordered_art.startswith("_"))
         self.assertTrue(bordered_art.endswith("‾"))
 
-        restored_art = remove_horizontal_borders(bordered_art)
+        restored_art = remove_borders(bordered_art)
         print("RESTORED ASCII ART WITHOUT BORDERS:")
         print(restored_art)
         self.assertEqual(restored_art, ascii_art)
 
-    def check_matrix_array(self, arrays):
+    def test_add_and_remove_borders(self):
+        ascii_art = "*#@\n%&O\n$X~"
+        bordered_art = add_borders(ascii_art)
+        print("ASCII ART WITH BORDERS:")
+        print(bordered_art)
+        self.assertTrue(bordered_art.startswith("_"))
+        self.assertTrue(bordered_art.endswith("‾"))
+        self.assertTrue(all(row.startswith("|") and row.endswith("|") for row in bordered_art.split("\n")[1:-1]))
+
+        restored_art = remove_borders(bordered_art)
+        print("RESTORED ASCII ART WITHOUT BORDERS:")
+        print(restored_art)
+        self.assertEqual(restored_art, ascii_art)
         summary = {"True": 0, "False": 0}
         for array in arrays:
             if self.check_matrix(array):

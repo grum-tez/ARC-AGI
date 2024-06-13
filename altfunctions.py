@@ -39,7 +39,20 @@ def remove_right_border(ascii_art):
     bordered_rows = [row[:-1] if row.endswith("|") else row for row in rows]
     return "\n".join(bordered_rows)
 
-# Define the mapping for numbers 1 to 9 with the specified swaps
+def add_borders(ascii_art):
+    ascii_art = add_top_border(ascii_art)
+    ascii_art = add_bottom_border(ascii_art)
+    ascii_art = add_left_border(ascii_art)
+    ascii_art = add_right_border(ascii_art)
+    return ascii_art
+
+def remove_borders(ascii_art):
+    ascii_art = remove_top_border(ascii_art)
+    ascii_art = remove_bottom_border(ascii_art)
+    ascii_art = remove_left_border(ascii_art)
+    ascii_art = remove_right_border(ascii_art)
+    return ascii_art
+
 mapping = {
     1: '*',
     2: '#',
