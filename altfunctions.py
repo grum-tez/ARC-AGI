@@ -30,11 +30,12 @@ reverse_mapping[' '] = 0  # Add this line to map spaces back to zeroes
 def convert_grid(array):
     ascii_art = ""
     for i, row in enumerate(array):
-        ascii_art += ""
-        for num in row:
-            ascii_art += mapping.get(num, ' ') + "|"
+        for j, num in enumerate(row):
+            ascii_art += mapping.get(num, ' ')
+            if j < len(row) - 1:
+                ascii_art += "|"
         if i < len(array) - 1:
-            ascii_art += "\n" + "-" * (len(row) * 2 -1) + "\n"  # Horizontal line to separate rows
+            ascii_art += "\n" + "-" * (len(row) * 2 - 1) + "\n"  # Horizontal line to separate rows
     return ascii_art
 
 def convert_back_grid(ascii_art):
