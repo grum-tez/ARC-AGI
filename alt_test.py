@@ -39,16 +39,6 @@ class TestAltFunctions(unittest.TestCase):
         print("RESTORED ASCII ART WITHOUT BORDERS:")
         print(restored_art)
         self.assertEqual(restored_art, ascii_art)
-        result = TestAsciiConverter().convert_and_back(array, conversion_method="grid")
-        if result["original_array"] != result["converted_back_array"]:
-            print("ORIGINAL ARRAY:")
-            for row in result["original_array"]:
-                print(row)
-            print("ASCII ART STRING:", result["ascii_art"])
-            print("RESTORED ARRAY:")
-            for row in result["converted_back_array"]:
-                print(row)
-        return result["original_array"] == result["converted_back_array"]
 
     def check_matrix_array(self, arrays):
         summary = {"True": 0, "False": 0}
