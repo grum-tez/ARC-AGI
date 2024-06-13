@@ -1,4 +1,14 @@
 
+def add_horizontal_borders(ascii_art):
+    rows = ascii_art.split("\n")
+    width = len(rows[0])
+    top_border = "_" * width
+    bottom_border = "‾" * width
+    return f"{top_border}\n{ascii_art}\n{bottom_border}"
+
+def remove_horizontal_borders(ascii_art):
+    rows = ascii_art.split("\n")
+    return "\n".join(rows[1:-1])
 
 # Define the mapping for numbers 1 to 9 with the specified swaps
 mapping = {
