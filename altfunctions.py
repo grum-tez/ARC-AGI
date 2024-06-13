@@ -21,12 +21,12 @@ def remove_bottom_border(ascii_art):
 
 def add_left_border(ascii_art):
     rows = ascii_art.split("\n")
-    bordered_rows = [f"|{row}" for row in rows]
+    bordered_rows = [rows[0]] + [f"|{row}" for row in rows[1:-1]] + [rows[-1]]
     return "\n".join(bordered_rows)
 
 def add_right_border(ascii_art):
     rows = ascii_art.split("\n")
-    bordered_rows = [f"{row}|" for row in rows]
+    bordered_rows = [rows[0]] + [f"{row}|" for row in rows[1:-1]] + [rows[-1]]
     return "\n".join(bordered_rows)
 
 def remove_left_border(ascii_art):
