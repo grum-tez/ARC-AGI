@@ -7,6 +7,13 @@ from asciiconverter import array_to_ascii_art, build_prompts, convert_grid
 RUN_LOGS_FILE = 'run_logs.json'
 
 def save_last_run(json_file_path):
+    if os.path.exists(RUN_LOGS_FILE):
+        with open(RUN_LOGS_FILE, 'r') as log_file:
+            data = json.load(log_file)
+            history = data.get("history", [])
+    else:
+        history = []
+
     with open(RUN_LOGS_FILE, 'w') as log_file:
         if os.path.exists(RUN_LOGS_FILE):
             data = json.load(log_file)
