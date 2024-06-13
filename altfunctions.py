@@ -2,13 +2,13 @@
 def add_top_border(ascii_art):
     rows = ascii_art.split("\n")
     width = len(rows[0])
-    top_border = "_" * width
+    top_border = "_" * (width - 2)
     return f"{top_border}\n{ascii_art}"
 
 def add_bottom_border(ascii_art):
     rows = ascii_art.split("\n")
     width = len(rows[0])
-    bottom_border = "‾" * width
+    bottom_border = "‾" * (width)
     return f"{ascii_art}\n{bottom_border}"
 
 def remove_top_border(ascii_art):
@@ -21,12 +21,12 @@ def remove_bottom_border(ascii_art):
 
 def add_left_border(ascii_art):
     rows = ascii_art.split("\n")
-    bordered_rows = [f"_{rows[0]}_"] + [f"|{row}|" for row in rows[1:-1]] + [f"‾{rows[-1]}‾"]
+    bordered_rows = [f"_{rows[0]}_"] + [f"|{row}" for row in rows[1:-1]] + [f"‾{rows[-1]}‾"]
     return "\n".join(bordered_rows)
 
 def add_right_border(ascii_art):
     rows = ascii_art.split("\n")
-    bordered_rows = [f"_{rows[0]}_"] + [f"|{row}|" for row in rows[1:-1]] + [f"‾{rows[-1]}‾"]
+    bordered_rows = [f"_{rows[0]}_"] + [f"{row}|" for row in rows[1:-1]] + [f"‾{rows[-1]}‾"]
     return "\n".join(bordered_rows)
 
 def remove_left_border(ascii_art):
@@ -47,10 +47,10 @@ def add_borders(ascii_art):
     return ascii_art
 
 def remove_borders(ascii_art):
-    ascii_art = remove_top_border(ascii_art)
-    ascii_art = remove_bottom_border(ascii_art)
-    ascii_art = remove_left_border(ascii_art)
     ascii_art = remove_right_border(ascii_art)
+    ascii_art = remove_left_border(ascii_art)
+    ascii_art = remove_bottom_border(ascii_art)
+    ascii_art = remove_top_border(ascii_art)
     return ascii_art
 
 mapping = {

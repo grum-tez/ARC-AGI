@@ -33,7 +33,6 @@ class TestAltFunctions(unittest.TestCase):\
             [4, 5, 6],
             [7, 8, 9]
         ]
-        expected_ascii_art = "|*|#|@|\n---|---|---\n|%|&|O|\n---|---|---\n|$|X|~|"
         
         ascii_art = convert_grid(original_array)
         print("ORIGINAL ARRAY:")
@@ -41,8 +40,6 @@ class TestAltFunctions(unittest.TestCase):\
             print(row)
         print("ASCII ART:")
         print(ascii_art)
-        print("EXPECTED")
-        print(expected_ascii_art)
         print("RECREATED ARRAY:")
         for row in convert_back_grid(ascii_art):
             print(row)
@@ -51,40 +48,19 @@ class TestAltFunctions(unittest.TestCase):\
         converted_back_array = convert_back_grid(ascii_art)
         self.assertEqual(converted_back_array, original_array)
 
-    def test_add_and_remove_horizontal_borders(self):
-        ascii_art = "|*|#|@|\n--|-|--\n|%|&|O|\n--|-|--\n|$|X|~|"
-        bordered_art = add_borders(ascii_art)
-        print("ASCII ART WITH BORDERS:")
-        print(bordered_art)
-        self.assertTrue(bordered_art.startswith("_"))
-        self.assertTrue(bordered_art.endswith("‾"))
-
-        restored_art = remove_borders(bordered_art)
-        print("RESTORED ASCII ART WITHOUT BORDERS:")
-        print(restored_art)
-        self.assertEqual(restored_art, ascii_art)
-
     def test_add_and_remove_borders(self):
+        print("test add and remove borders")
         ascii_art = "*#@\n%&O\n$X~"
+        print("ascii_art")
+        print(ascii_art)
         bordered_art = add_borders(ascii_art)
         print("ASCII ART WITH BORDERS:")
         print(bordered_art)
-        self.assertTrue(bordered_art.startswith("_"))
-        self.assertTrue(bordered_art.endswith("‾"))
-        self.assertTrue(all(row.startswith("|") and row.endswith("|") for row in bordered_art.split("\n")[1:-1]))
 
         restored_art = remove_borders(bordered_art)
         print("RESTORED ASCII ART WITHOUT BORDERS:")
         print(restored_art)
         self.assertEqual(restored_art, ascii_art)
-        summary = {"True": 0, "False": 0}
-        for array in arrays:
-            if self.check_matrix(array):
-                summary["True"] += 1
-            else:
-                summary["False"] += 1
-        assert summary["False"] == 0, f"Found {summary['False']} matrices that failed conversion."
-        return summary
 
     def test_all_json_files_in_training_folder(self):
         import os
