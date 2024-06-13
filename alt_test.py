@@ -1,5 +1,5 @@
 import unittest
-from altfunctions import convert_grid, convert_back_grid
+from altfunctions import convert_grid, convert_back_grid, add_horizontal_borders, remove_horizontal_borders
 from test_asciiconverter import TestAsciiConverter
 
 class TestAltFunctions(unittest.TestCase):
@@ -27,7 +27,18 @@ class TestAltFunctions(unittest.TestCase):
         converted_back_array = convert_back_grid(ascii_art)
         self.assertEqual(converted_back_array, original_array)
 
-    def check_matrix(self, array):
+    def test_add_and_remove_horizontal_borders(self):
+        ascii_art = "|*|#|@|\n---|---|---\n|%|&|O|\n---|---|---\n|$|X|~|"
+        bordered_art = add_horizontal_borders(ascii_art)
+        print("ASCII ART WITH BORDERS:")
+        print(bordered_art)
+        self.assertTrue(bordered_art.startswith("_"))
+        self.assertTrue(bordered_art.endswith("‾"))
+
+        restored_art = remove_horizontal_borders(bordered_art)
+        print("RESTORED ASCII ART WITHOUT BORDERS:")
+        print(restored_art)
+        self.assertEqual(restored_art, ascii_art)
         result = TestAsciiConverter().convert_and_back(array, conversion_method="grid")
         if result["original_array"] != result["converted_back_array"]:
             print("ORIGINAL ARRAY:")
