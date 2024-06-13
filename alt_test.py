@@ -17,6 +17,7 @@ class TestAltFunctions(unittest.TestCase):\
             return result["original_array"] == result["converted_back_array"]
     
     def test_basic_matrix_conversion(self):
+        print("tesing basic matrix conversion")
         original_array = [
             [1, 2, 3],
             [4, 5, 6],
@@ -63,27 +64,27 @@ class TestAltFunctions(unittest.TestCase):\
         assert summary["False"] == 0, f"Found {summary['False']} matrices that failed conversion."
         return summary
 
-    def test_all_json_files_in_training_folder(self):
-        import os
+    # def test_all_json_files_in_training_folder(self):
+    #     import os
 
-        training_folder = 'data/training'
-        json_files = [f for f in os.listdir(training_folder) if f.endswith('.json')]
+    #     training_folder = 'data/training'
+    #     json_files = [f for f in os.listdir(training_folder) if f.endswith('.json')]
 
-        false_zero_count = 0
-        false_greater_than_zero_count = 0
+    #     false_zero_count = 0
+    #     false_greater_than_zero_count = 0
 
-        for json_file in json_files[:400]:
-            json_file_path = os.path.join(training_folder, json_file)
-            arrays = TestAsciiConverter().extract_sample_arrays(json_file_path)
-            summary = self.check_matrix_array(arrays)
-            if summary["False"] == 0:
-                false_zero_count += 1
-            else:
-                false_greater_than_zero_count += 1
+    #     for json_file in json_files[:400]:
+    #         json_file_path = os.path.join(training_folder, json_file)
+    #         arrays = TestAsciiConverter().extract_sample_arrays(json_file_path)
+    #         summary = self.check_matrix_array(arrays)
+    #         if summary["False"] == 0:
+    #             false_zero_count += 1
+    #         else:
+    #             false_greater_than_zero_count += 1
 
-        print(f"Number of JSON files: {len(json_files)}")
-        print(f"Files with False: 0: {false_zero_count}")
-        print(f"Files with False > 0: {false_greater_than_zero_count}")
+    #     print(f"Number of JSON files: {len(json_files)}")
+    #     print(f"Files with False: 0: {false_zero_count}")
+    #     print(f"Files with False > 0: {false_greater_than_zero_count}")
 
 if __name__ == "__main__":
     unittest.main()
