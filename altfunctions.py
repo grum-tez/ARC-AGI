@@ -1,14 +1,43 @@
 
-def add_horizontal_borders(ascii_art):
+def add_top_border(ascii_art):
     rows = ascii_art.split("\n")
     width = len(rows[0])
     top_border = "_" * width
-    bottom_border = "‾" * width
-    return f"{top_border}\n{ascii_art}\n{bottom_border}"
+    return f"{top_border}\n{ascii_art}"
 
-def remove_horizontal_borders(ascii_art):
+def add_bottom_border(ascii_art):
     rows = ascii_art.split("\n")
-    return "\n".join(rows[1:-1])
+    width = len(rows[0])
+    bottom_border = "‾" * width
+    return f"{ascii_art}\n{bottom_border}"
+
+def remove_top_border(ascii_art):
+    rows = ascii_art.split("\n")
+    return "\n".join(rows[1:])
+
+def remove_bottom_border(ascii_art):
+    rows = ascii_art.split("\n")
+    return "\n".join(rows[:-1])
+
+def add_left_border(ascii_art):
+    rows = ascii_art.split("\n")
+    bordered_rows = [f"|{row}" for row in rows]
+    return "\n".join(bordered_rows)
+
+def add_right_border(ascii_art):
+    rows = ascii_art.split("\n")
+    bordered_rows = [f"{row}|" for row in rows]
+    return "\n".join(bordered_rows)
+
+def remove_left_border(ascii_art):
+    rows = ascii_art.split("\n")
+    bordered_rows = [row[1:] if row.startswith("|") else row for row in rows]
+    return "\n".join(bordered_rows)
+
+def remove_right_border(ascii_art):
+    rows = ascii_art.split("\n")
+    bordered_rows = [row[:-1] if row.endswith("|") else row for row in rows]
+    return "\n".join(bordered_rows)
 
 # Define the mapping for numbers 1 to 9 with the specified swaps
 mapping = {
