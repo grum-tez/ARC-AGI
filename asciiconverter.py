@@ -149,3 +149,13 @@ def build_prompts(json_file_path, grid=True, border=False):
         combined_md_file.write(f"canvas size: {output_dimensions}\n\n")
 
         combined_md_file.write("\nProduce a single code block with the language indicated as ascii as your response. Then reflect on that code block. Reason aloud. Consider how both how it does, and does not reflect the examples you were given. Then make a final attempt, again produce a single code block with the language indicated as ascii as your response.\n")
+
+    # Write the correct test output to "prompts/correct_answer" file
+    correct_answer_path = 'prompts/correct_answer'
+    with open(correct_answer_path, 'w') as correct_file:
+        correct_file.write(output_art)
+
+    # Create an empty "prompts/your_answer" file
+    your_answer_path = 'prompts/your_answer'
+    with open(your_answer_path, 'w') as your_answer_file:
+        pass
