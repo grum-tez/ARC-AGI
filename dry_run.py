@@ -79,12 +79,12 @@ print(f"Number of elements in the test array: {num_elements}")
 first_element = test_array[0]
 
 # Convert the input matrix to ASCII and print it
-input_ascii = convert_grid(first_element['input'])
+input_ascii = convert_grid(first_element['input']) if grid else array_to_ascii_art(first_element['input'])
 print("Input matrix in ASCII:")
 print(input_ascii)
 
 # Convert the output matrix to ASCII and print it
-output_ascii = convert_grid(first_element['output'])
+output_ascii = convert_grid(first_element['output']) if grid else array_to_ascii_art(first_element['output'])
 print("Output matrix in ASCII:")
 print(output_ascii)
 
