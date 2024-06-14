@@ -77,7 +77,10 @@ def convert_grid(array):
             if j < len(row) - 1:
                 ascii_art += "|"
         if i < len(array) - 1:
-            ascii_art += "\n" + "-" + "-".join(["+"] * (len(row) - 1)) + "-" + "\n"  # Horizontal line to separate rows
+            if len(row) > 1:
+                ascii_art += "\n" + "-" + "-".join(["+"] * (len(row) - 1)) + "-" + "\n"  # Horizontal line to separate rows
+            else:
+                ascii_art += "\n" + "-" + "\n"  # Horizontal line for single column
     return ascii_art
 
 def convert_back_grid(ascii_art):
