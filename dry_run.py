@@ -116,8 +116,9 @@ with open('prompts/your_answer', 'w') as your_answer_file:
     pass
 print(f"Saving last run to {RUN_LOGS_FILE}")
 
+build_prompts(json_file_path, grid=grid, border=borders)
+
 # Ask the user if they would like to check their answer
 check_answer = input("Would you like to check your answer? (yes/no): ").strip().lower()
 if check_answer == 'yes':
     compare_answers()
-build_prompts(json_file_path, grid=grid, border=borders)
