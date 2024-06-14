@@ -132,7 +132,8 @@ def build_prompts(json_file_path, grid=True, border=False):
         combined_md_file.write(inputs[len(train_array)][1])
         combined_md_file.write("\n```\n\n")
 
-        combined_md_file.write("\nProduce a single code block with the language indicated as ascii as your response. Then reflect on that code block. Reason aloud. Consider how both how it does, and does not reflect the examples you were given. Think about the images holistically, and try to come up with a rule or rules for the transformation that applies to all of the training examples. Then make a final attempt, again produce a single code block with the language indicated as ascii as your response.\n")
+        combined_md_file.write("\nProduce a single code block with the language indicated as ascii as your response.\n")
+        combined_md_file.write("Then \"Zoom out\" and take a holistic perspective. Consider all the inputs together, followed by all the outputs together. Reason aloud about the images and sub-images of the inputs and the rules that dictate their relationship to the images and sub-images of the outputs. Then think about each of the inputs and their corresponding output. Reason aloud. Be certain and confident. Now reflect on your earlier answer. Consider how both how it does, and does not reflect the examples you were given, and the relationship you have discovered. Make a final attempt in the form of a single code block with the language indicated as ascii.\n")
 
     # Write the correct test output to "prompts/correct_answer" file
     correct_output_ascii = convert_grid(test_array[0]['output']) if grid else array_to_ascii_art(test_array[0]['output'])
