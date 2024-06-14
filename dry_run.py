@@ -107,9 +107,15 @@ print(f"Output dimensions: {output_dimensions}")
 # Ensure the prompts directory exists
 os.makedirs('prompts', exist_ok=True)
 
+# Ensure the prompts directory exists
+os.makedirs('prompts', exist_ok=True)
+
 # Write the correct test output to "prompts/correct_answer" file
+correct_output_ascii = convert_grid(first_element['output']) if grid else array_to_ascii_art(first_element['output'])
+if borders:
+    correct_output_ascii = add_borders(correct_output_ascii)
 with open('prompts/correct_answer', 'w') as correct_file:
-    correct_file.write(output_ascii)
+    correct_file.write(correct_output_ascii)
 
 # Create an empty "prompts/your_answer" file
 with open('prompts/your_answer', 'w') as your_answer_file:
