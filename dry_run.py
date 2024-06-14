@@ -5,6 +5,17 @@ import sys
 from asciiconverter import array_to_ascii_art, build_prompts, convert_grid
 from altfunctions import add_borders
 
+def compare_answers():
+    with open('prompts/correct_answer', 'r') as correct_file:
+        correct_answer = correct_file.read().strip()
+    with open('prompts/your_answer', 'r') as your_answer_file:
+        your_answer = your_answer_file.read().strip()
+    
+    if correct_answer == your_answer:
+        print("Correct!")
+    else:
+        print("Incorrect")
+
 RUN_LOGS_FILE = 'run_logs.json'
 
 def save_last_run(json_file_path):
@@ -104,4 +115,9 @@ with open('prompts/correct_answer', 'w') as correct_file:
 with open('prompts/your_answer', 'w') as your_answer_file:
     pass
 print(f"Saving last run to {RUN_LOGS_FILE}")
+
+# Ask the user if they would like to check their answer
+check_answer = input("Would you like to check your answer? (yes/no): ").strip().lower()
+if check_answer == 'yes':
+    compare_answers()
 build_prompts(json_file_path, grid=grid, border=borders)
