@@ -102,36 +102,30 @@ def build_prompts(json_file_path, grid=True, border=False):
             inputs.append((index + 1 + len(train_array), input_art))
             outputs.append((index + 1 + len(train_array), output_art))
 
-        combined_md_file.write("## Inputs\n\n")
-        for idx, input_art in inputs:
+        combined_md_file.write("## Training Inputs\n\n")
+        for idx, input_art in inputs[:len(train_array)]:
             combined_md_file.write(f"### Input {idx}\n")
             combined_md_file.write("```ascii\n")
             combined_md_file.write(input_art)
             combined_md_file.write("\n```\n\n")
 
-        combined_md_file.write("## Outputs\n\n")
-        for idx, output_art in outputs:
+        combined_md_file.write("## Training Outputs\n\n")
+        for idx, output_art in outputs[:len(train_array)]:
             combined_md_file.write(f"### Output {idx}\n")
             combined_md_file.write("```ascii\n")
             combined_md_file.write(output_art)
             combined_md_file.write("\n```\n\n")
 
-        # Add example "output canvas" with an empty bordered canvas
-        empty_canvas = [[" " for _ in range(len(test_array[0]['output'][0]))] for _ in range(len(test_array[0]['output']))]
-        empty_canvas_art = array_to_ascii_art(empty_canvas)
-        if border:
-            empty_canvas_art = add_borders(empty_canvas_art)
+        combined_md_file.write("## Challenge\n\n")
+        combined_md_file.write("### Input\n")
+        combined_md_file.write("```ascii\n")
+        combined_md_file.write(inputs[len(train_array)][1])
+        combined_md_file.write("\n```\n\n")
 
-        test_md_file.write("### Output Canvas\n")
-        test_md_file.write("\nYour response must be strictly within this canvas.\n")
-        test_md_file.write("```ascii\n")
-        test_md_file.write(empty_canvas_art)
-        test_md_file.write("\n```\n\n")
-
-        combined_md_file.write("### Output Canvas\n")
+        combined_md_file.write("### Challenge Output\n")
         combined_md_file.write("\nYour response must be strictly within this canvas.\n")
         combined_md_file.write("```ascii\n")
-        combined_md_file.write(empty_canvas_art)
+        combined_md_file.write(outputs[len(train_array)][1])
         combined_md_file.write("\n```\n\n")
 
         combined_md_file.write("\nProduce a single code block with the language indicated as ascii as your response. Then reflect on that code block. Reason aloud. Consider how both how it does, and does not reflect the examples you were given. Then make a final attempt, again produce a single code block with the language indicated as ascii as your response.\n")
