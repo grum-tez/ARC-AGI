@@ -57,7 +57,7 @@ training_folder = 'data/training'
 json_files = [f for f in os.listdir(training_folder) if f.endswith('.json')]
 
 grid = False
-borders = True
+borders = False
 json_file_path = None
 
 if len(sys.argv) > 1:

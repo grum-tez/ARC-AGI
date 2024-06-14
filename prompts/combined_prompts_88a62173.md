@@ -91,4 +91,4 @@ ____
 ```
 
 
-Produce a single code block with the language indicated as ascii as your response. Then reflect on that code block. Reason aloud. Consider how both how it does, and does not reflect the examples you were given. Think about the images holistically, and try to come up with a rule or rule for the transformation that applies to all of the training examples Then make a final attempt, again produce a single code block with the language indicated as ascii as your response.
+Produce a single code block with the language indicated as ascii as your response. Then reflect on that code block. Reason aloud. Consider how both how it does, and does not reflect the examples you were given. Then make a final attempt, again produce a single code block with the language indicated as ascii as your response.
