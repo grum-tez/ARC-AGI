@@ -93,23 +93,23 @@ def build_prompts(json_file_path, grid=True, border=False):
                 input_art = add_borders(input_art)
                 output_art = add_borders(output_art)
             train_md_file.write(input_art)
-            train_md_file.write("```\n\n")
+            train_md_file.write("\n```\n\n")
 
                 
             train_md_file.write("#### Output\n")
             train_md_file.write("```ascii\n")
             train_md_file.write(output_art)
-            train_md_file.write("```\n\n")
+            train_md_file.write("\n```\n\n")
 
             combined_md_file.write(f"### Pattern example {index + 1}\n")
             combined_md_file.write("#### Input\n")
             combined_md_file.write("```ascii\n")
             combined_md_file.write(input_art)
-            combined_md_file.write("```\n\n")
+            combined_md_file.write("\n```\n\n")
             combined_md_file.write("#### Output\n")
             combined_md_file.write("```ascii\n")
             combined_md_file.write(output_art)
-            combined_md_file.write("```\n\n")
+            combined_md_file.write("\n```\n\n")
 
         combined_md_file.write("### Output\n")
 
@@ -128,14 +128,14 @@ def build_prompts(json_file_path, grid=True, border=False):
             if border:
                 input_art = add_borders(input_art)
             test_md_file.write(input_art)
-            test_md_file.write("```\n\n")
+            test_md_file.write("\n```\n\n")
 
             combined_md_file.write(f"## Challenge {index + 1}\n")
             combined_md_file.write("### Input\n")
             combined_md_file.write(f"input canvas size: {input_dimensions}\n")
             combined_md_file.write("```ascii\n")
             combined_md_file.write(input_art)
-            combined_md_file.write("```\n\n")
+            combined_md_file.write("\n```\n\n")
 
         # Add example "output canvas" with an empty bordered canvas
         empty_canvas = [[" " for _ in range(len(test_array[0]['output'][0]))] for _ in range(len(test_array[0]['output']))]
