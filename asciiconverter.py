@@ -162,15 +162,13 @@ def build_prompts(json_file_path, grid=True, border=False):
 
         test_md_file.write("### Example Output Canvas\n")
         test_md_file.write(f"output canvas size: {empty_canvas_dimensions}\n")
-        test_md_file.write("```ascii\n")
         test_md_file.write(empty_canvas_art)
-        test_md_file.write("```\n\n")
+        test_md_file.write("\n\n")
 
         combined_md_file.write("### Example Output Canvas\n")
         combined_md_file.write(f"output canvas size: {empty_canvas_dimensions}\n")
-        combined_md_file.write("```ascii\n")
         combined_md_file.write(empty_canvas_art)
-        combined_md_file.write("```\n\n")
+        combined_md_file.write("\n\n")
 
         combined_md_file.write("\nProduce a single code block with the language indicated as ascii as your response. Then reflect on that code block. Reason aloud. Consider how both how it does, and does not reflect the examples you were given. Then make a final attempt, again produce a single code block with the language indicated as ascii as your response.\n")
 
