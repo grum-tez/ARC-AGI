@@ -77,7 +77,7 @@ def convert_grid(array):
             if j < len(row) - 1:
                 ascii_art += "|"
         if i < len(array) - 1:
-            ascii_art += "\n" + "-" * (len(row) * 2 - 1) + "\n"  # Horizontal line to separate rows
+            ascii_art += "\n" + "-".join(["+"] * (len(row) - 1)) + "\n"  # Horizontal line to separate rows
     return ascii_art
 
 def convert_back_grid(ascii_art):
@@ -88,6 +88,6 @@ def convert_back_grid(ascii_art):
         #     row = row[1:]  # Remove leading '|'
         # if row.endswith("|"):
         #     row = row[:-1]  # Remove trailing '|'
-        if "-" not in row:  # Ignore rows that are just horizontal lines
+        if "+" not in row:  # Ignore rows that are just horizontal lines
             array.append([reverse_mapping.get(char, 0) for char in row.split("|") if char])
     return array
