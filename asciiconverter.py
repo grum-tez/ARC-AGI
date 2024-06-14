@@ -121,7 +121,10 @@ def build_prompts(json_file_path, grid=True, border=False):
         combined_md_file.write("### Output\n")
         combined_md_file.write(f"output canvas size: {output_dimensions}\n\n")
 
+        output_dimensions = None
         for index, element in enumerate(test_array):
+            output_art = convert_grid(element['output']) if grid else array_to_ascii_art(element['output'])
+            output_dimensions = f"{len(element['output'])}x{len(element['output'][0])}"
             test_md_file.write(f"## Challenge {index + 1}\n")
             input_art = convert_grid(element['input']) if grid else array_to_ascii_art(element['input'])
             input_dimensions = f"{len(element['input'])}x{len(element['input'][0])}"
@@ -149,7 +152,7 @@ def build_prompts(json_file_path, grid=True, border=False):
         combined_md_file.write(f"output canvas size: {output_dimensions}\n\n")
 
         # Add example "output canvas" with an empty bordered canvas
-        empty_canvas = [[" " for _ in range(len(test_array[0]['input'][0]))] for _ in range(len(test_array[0]['input']))]
+        empty_canvas = [[" " for _ in range(len(test_array[0]['output'][0]))] for _ in range(len(test_array[0]['output']))]
         empty_canvas_art = array_to_ascii_art(empty_canvas)
         if border:
             empty_canvas_art = add_borders(empty_canvas_art)
