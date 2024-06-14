@@ -93,6 +93,12 @@ print("Output matrix in ASCII:")
 print(output_ascii)
 print(f"Output dimensions: {output_dimensions}")
 
-# Run build_prompts on the chosen JSON file
+# Write the correct test output to "correct_answer" file
+with open('correct_answer', 'w') as correct_file:
+    correct_file.write(output_ascii)
+
+# Create an empty "your_answer" file
+with open('your_answer', 'w') as your_answer_file:
+    pass
 print(f"Saving last run to {RUN_LOGS_FILE}")
 build_prompts(json_file_path, grid=grid, border=borders)
