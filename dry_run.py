@@ -93,12 +93,15 @@ print("Output matrix in ASCII:")
 print(output_ascii)
 print(f"Output dimensions: {output_dimensions}")
 
-# Write the correct test output to "correct_answer" file
-with open('correct_answer', 'w') as correct_file:
+# Ensure the prompts directory exists
+os.makedirs('prompts', exist_ok=True)
+
+# Write the correct test output to "prompts/correct_answer" file
+with open('prompts/correct_answer', 'w') as correct_file:
     correct_file.write(output_ascii)
 
-# Create an empty "your_answer" file
-with open('your_answer', 'w') as your_answer_file:
+# Create an empty "prompts/your_answer" file
+with open('prompts/your_answer', 'w') as your_answer_file:
     pass
 print(f"Saving last run to {RUN_LOGS_FILE}")
 build_prompts(json_file_path, grid=grid, border=borders)
