@@ -148,6 +148,25 @@ def build_prompts(json_file_path, grid=True, border=False):
         combined_md_file.write("### Output\n")
         combined_md_file.write(f"output canvas size: {output_dimensions}\n\n")
 
+        # Add example "output canvas" with an empty bordered canvas
+        empty_canvas = [[" " for _ in range(len(test_array[0]['input'][0]))] for _ in range(len(test_array[0]['input']))]
+        empty_canvas_art = array_to_ascii_art(empty_canvas)
+        if border:
+            empty_canvas_art = add_borders(empty_canvas_art)
+        empty_canvas_dimensions = f"{len(empty_canvas)}x{len(empty_canvas[0])}"
+
+        test_md_file.write("### Example Output Canvas\n")
+        test_md_file.write(f"output canvas size: {empty_canvas_dimensions}\n")
+        test_md_file.write("```ascii\n")
+        test_md_file.write(empty_canvas_art)
+        test_md_file.write("```\n\n")
+
+        combined_md_file.write("### Example Output Canvas\n")
+        combined_md_file.write(f"output canvas size: {empty_canvas_dimensions}\n")
+        combined_md_file.write("```ascii\n")
+        combined_md_file.write(empty_canvas_art)
+        combined_md_file.write("```\n\n")
+
         combined_md_file.write("\nProduce a single code block with the language indicated as ascii as your response. Then reflect on that code block. Reason aloud. Consider how both how it does, and does not reflect the examples you were given. Then make a final attempt, again produce a single code block with the language indicated as ascii as your response.\n")
 
     # Write the correct test output to "prompts/correct_answer" file
