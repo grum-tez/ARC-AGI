@@ -80,7 +80,13 @@ def build_prompts(json_file_path, grid=True, border=False):
 
         for index, element in enumerate(train_array):
             train_md_file.write(f"### Pattern example {index + 1}\n")
+            input_art = convert_grid(element['input']) if grid else array_to_ascii_art(element['input'])
+            input_dimensions = f"{len(element['input'])}x{len(element['input'][0])}"
+            output_art = convert_grid(element['output']) if grid else array_to_ascii_art(element['output'])
+            output_dimensions = f"{len(element['output'])}x{len(element['output'][0])}"
+            
             train_md_file.write("#### Input\n")
+            train_md_file.write(f"canvas size: {input_dimensions}\n")
             train_md_file.write("```ascii\n")
             input_art = convert_grid(element['input']) if grid else array_to_ascii_art(element['input'])
             output_art = convert_grid(element['output']) if grid else array_to_ascii_art(element['output'])
@@ -89,7 +95,10 @@ def build_prompts(json_file_path, grid=True, border=False):
                 output_art = add_borders(output_art)
             train_md_file.write(input_art)
             train_md_file.write("```\n\n")
+
+                
             train_md_file.write("#### Output\n")
+            train_md_file.write(f"canvas size: {output_dimensions}\n")
             train_md_file.write("```ascii\n")
             train_md_file.write(output_art)
             train_md_file.write("```\n\n")
@@ -106,7 +115,11 @@ def build_prompts(json_file_path, grid=True, border=False):
 
         for index, element in enumerate(test_array):
             test_md_file.write(f"## Challenge {index + 1}\n")
+            input_art = convert_grid(element['input']) if grid else array_to_ascii_art(element['input'])
+            input_dimensions = f"{len(element['input'])}x{len(element['input'][0])}"
+            
             test_md_file.write("### Input\n")
+            test_md_file.write(f"canvas size: {input_dimensions}\n")
             test_md_file.write("```ascii\n")
             input_art = convert_grid(element['input']) if grid else array_to_ascii_art(element['input'])
             if border:
