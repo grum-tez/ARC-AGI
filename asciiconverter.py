@@ -118,10 +118,10 @@ def build_prompts(json_file_path, grid=True, border=False):
             combined_md_file.write("```\n\n")
 
         train_md_file.write("### Output\n")
-        train_md_file.write(f"output canvas size: {output_dimensions}\n\n")
+        train_md_file.write("\nYour response must be strictly within this canvas.\n\n")
 
         combined_md_file.write("### Output\n")
-        combined_md_file.write(f"output canvas size: {output_dimensions}\n\n")
+        combined_md_file.write("\nYour response must be strictly within this canvas.\n\n")
 
         output_dimensions = None
         for index, element in enumerate(test_array):
