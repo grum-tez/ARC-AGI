@@ -47,7 +47,7 @@ def convert_back(ascii_art):
             row.append(0)
     return array
 
-def build_prompts(json_file_path):
+def build_prompts(json_file_path, grid=True, border=False):
     import shutil
 
     # Delete the prompts folder if it exists
@@ -82,34 +82,42 @@ def build_prompts(json_file_path):
             train_md_file.write(f"### Pattern example {index + 1}\n")
             train_md_file.write("#### Input\n")
             train_md_file.write("```ascii\n")
-            train_md_file.write(convert_grid(element['input']))
+            input_art = convert_grid(element['input']) if grid else array_to_ascii_art(element['input'])
+            output_art = convert_grid(element['output']) if grid else array_to_ascii_art(element['output'])
+            if border:
+                input_art = add_borders(input_art)
+                output_art = add_borders(output_art)
+            train_md_file.write(input_art)
             train_md_file.write("```\n\n")
             train_md_file.write("#### Output\n")
             train_md_file.write("```ascii\n")
-            train_md_file.write(convert_grid(element['output']))
+            train_md_file.write(output_art)
             train_md_file.write("```\n\n")
 
             combined_md_file.write(f"### Pattern example {index + 1}\n")
             combined_md_file.write("#### Input\n")
             combined_md_file.write("```ascii\n")
-            combined_md_file.write(convert_grid(element['input']))
+            combined_md_file.write(input_art)
             combined_md_file.write("```\n\n")
             combined_md_file.write("#### Output\n")
             combined_md_file.write("```ascii\n")
-            combined_md_file.write(convert_grid(element['output']))
+            combined_md_file.write(output_art)
             combined_md_file.write("```\n\n")
 
         for index, element in enumerate(test_array):
             test_md_file.write(f"## Challenge {index + 1}\n")
             test_md_file.write("### Input\n")
             test_md_file.write("```ascii\n")
-            test_md_file.write(convert_grid(element['input']))
+            input_art = convert_grid(element['input']) if grid else array_to_ascii_art(element['input'])
+            if border:
+                input_art = add_borders(input_art)
+            test_md_file.write(input_art)
             test_md_file.write("```\n\n")
 
             combined_md_file.write(f"## Challenge {index + 1}\n")
             combined_md_file.write("### Input\n")
             combined_md_file.write("```ascii\n")
-            combined_md_file.write(convert_grid(element['input']))
+            combined_md_file.write(input_art)
             combined_md_file.write("```\n\n")
 
         combined_md_file.write("\nProduce a single code block with the language indicated as ascii as your response. Then reflect on that code block. Reason aloud. Consider how both how it does, and does not reflect the examples you were given. Then make a final attempt, again produce a single code block with the language indicated as ascii as your response.\n")
