@@ -134,14 +134,16 @@ print(f"Saving last run to {RUN_LOGS_FILE}")
 
 build_prompts(json_file_path, grid=grid, border=borders)
 
-# Ask the user if they would like to check their answer
-check_answer = input("Would you like to check your answer? (yes/no): ").strip().lower()
-if check_answer == 'yes':
-    correct = compare_answers(json_file_path)
-    # Update the last run with the correct field
-    save_last_run(json_file_path, correct)
+# Prompt the user to press enter when they are ready to check their answer
+input("Press enter when you are ready to check your answer: ")
 
-# Ask the user if they would like to check their answer
-check_answer = input("Would you like to check your answer? (yes/no): ").strip().lower()
-if check_answer == 'yes':
-    compare_answers()
+# Check if the "your_answer" file is empty
+your_answer_path = 'prompts/your_answer'
+if os.path.getsize(your_answer_path) == 0:
+    print("your_answer file is empty")
+else:
+    correct = compare_answers(json_file_path)
+    if correct:
+        print("correct")
+    else:
+        print("incorrect")
