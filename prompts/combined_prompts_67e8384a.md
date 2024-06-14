@@ -4,8 +4,6 @@ all the following ascii grid patterns are visual artworks within rectangular gri
 
 Rules govern the transformation of the input patterns into the output patterns. Your task is to understand these rules so that you can create a new output from a given challenge input.
 
-## Pattern examples
-
 ## Training Inputs
 
 ### Input 1
