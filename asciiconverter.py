@@ -155,12 +155,12 @@ def build_prompts(json_file_path, grid=True, border=False):
         empty_canvas_dimensions = f"{len(empty_canvas)}x{len(empty_canvas[0])}"
 
         test_md_file.write("### Output Canvas\n")
-        test_md_file.write(f"output canvas size: {empty_canvas_dimensions}\n")
+        test_md_file.write("\nYour response must be strictly within this canvas.\n")
         test_md_file.write(empty_canvas_art)
         test_md_file.write("\n\n")
 
         combined_md_file.write("### Output Canvas\n")
-        combined_md_file.write(f"output canvas size: {empty_canvas_dimensions}\n")
+        combined_md_file.write("\nYour response must be strictly within this canvas.\n")
         combined_md_file.write(empty_canvas_art)
         combined_md_file.write("\n\n")
 
