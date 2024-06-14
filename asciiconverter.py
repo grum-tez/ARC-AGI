@@ -1,7 +1,7 @@
 import json
 import os
 import random
-from altfunctions import convert_grid, convert_back_grid
+from altfunctions import convert_grid, convert_back_grid, add_borders
 
 
 # Define the mapping for numbers 1 to 9 with the specified swaps
