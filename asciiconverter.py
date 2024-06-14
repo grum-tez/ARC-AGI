@@ -102,6 +102,16 @@ def build_prompts(json_file_path, grid=True, border=False):
             inputs.append((index + 1 + len(train_array), input_art))
             outputs.append((index + 1 + len(train_array), output_art))
 
+        for index, element in enumerate(train_array):
+            train_md_file.write(f"### Input {index + 1}\n")
+            train_md_file.write("```ascii\n")
+            train_md_file.write(inputs[index][1])
+            train_md_file.write("\n```\n\n")
+            train_md_file.write(f"### Output {index + 1}\n")
+            train_md_file.write("```ascii\n")
+            train_md_file.write(outputs[index][1])
+            train_md_file.write("\n```\n\n")
+
         combined_md_file.write("## Training Inputs\n\n")
         for idx, input_art in inputs[:len(train_array)]:
             combined_md_file.write(f"### Input {idx}\n")
