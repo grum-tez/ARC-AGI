@@ -85,8 +85,6 @@ def build_prompts(json_file_path, grid=True, border=False):
             train_md_file.write(f"### Pattern example {index + 1}\n")
             input_art = convert_grid(element['input']) if grid else array_to_ascii_art(element['input'])
             output_art = convert_grid(element['output']) if grid else array_to_ascii_art(element['output'])
-            output_dimensions = f"{len(element['output'])}x{len(element['output'][0])}"
-            
             train_md_file.write("#### Input\n")
             train_md_file.write("```ascii\n")
             input_art = convert_grid(element['input']) if grid else array_to_ascii_art(element['input'])
