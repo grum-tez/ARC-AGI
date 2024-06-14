@@ -115,6 +115,12 @@ def build_prompts(json_file_path, grid=True, border=False):
             combined_md_file.write(output_art)
             combined_md_file.write("```\n\n")
 
+        train_md_file.write("### Output\n")
+        train_md_file.write(f"canvas size: {output_dimensions}\n\n")
+
+        combined_md_file.write("### Output\n")
+        combined_md_file.write(f"canvas size: {output_dimensions}\n\n")
+
         for index, element in enumerate(test_array):
             test_md_file.write(f"## Challenge {index + 1}\n")
             input_art = convert_grid(element['input']) if grid else array_to_ascii_art(element['input'])
@@ -135,5 +141,11 @@ def build_prompts(json_file_path, grid=True, border=False):
             combined_md_file.write("```ascii\n")
             combined_md_file.write(input_art)
             combined_md_file.write("```\n\n")
+
+        test_md_file.write("### Output\n")
+        test_md_file.write(f"canvas size: {output_dimensions}\n\n")
+
+        combined_md_file.write("### Output\n")
+        combined_md_file.write(f"canvas size: {output_dimensions}\n\n")
 
         combined_md_file.write("\nProduce a single code block with the language indicated as ascii as your response. Then reflect on that code block. Reason aloud. Consider how both how it does, and does not reflect the examples you were given. Then make a final attempt, again produce a single code block with the language indicated as ascii as your response.\n")
