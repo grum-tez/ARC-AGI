@@ -2,10 +2,11 @@ import json
 import os
 import random
 import sys
+import datetime
 from asciiconverter import array_to_ascii_art, build_prompts, convert_grid
 from altfunctions import add_borders
 
-def compare_answers():
+def compare_answers(json_file_path):
     with open('prompts/correct_answer', 'r') as correct_file:
         correct_answer = correct_file.read().strip()
     with open('prompts/your_answer', 'r') as your_answer_file:
@@ -18,7 +19,7 @@ def compare_answers():
 
 RUN_LOGS_FILE = 'run_logs.json'
 
-def save_last_run(json_file_path):
+def save_last_run(json_file_path, correct=None):
     history = []
     if os.path.exists(RUN_LOGS_FILE):
         try:
@@ -28,7 +29,12 @@ def save_last_run(json_file_path):
         except (json.JSONDecodeError, IOError):
             history = []
 
-    history.insert(0, json_file_path)
+    run_object = {
+        "timestamp": datetime.datetime.now().isoformat(),
+        "json_file": json_file_path,
+        "correct": correct
+    }
+    history.insert(0, run_object)
     with open(RUN_LOGS_FILE, 'w') as log_file:
         json.dump({"last_run": json_file_path, "history": history}, log_file)
 
@@ -69,7 +75,8 @@ if not json_file_path:
         random_json_file = random.choice(json_files)
         json_file_path = os.path.join(training_folder, random_json_file)
 
-save_last_run(json_file_path)
+# Save the last run without the "correct" field initially
+save_last_run(json_file_path, correct=None)
 
 # Print the name of the chosen JSON file
 print(f"Chosen JSON file: {os.path.basename(json_file_path)}")
@@ -104,8 +111,6 @@ print("Output matrix in ASCII:")
 print(output_ascii)
 print(f"Output dimensions: {output_dimensions}")
 
-# Ensure the prompts directory exists
-os.makedirs('prompts', exist_ok=True)
 
 # Ensure the prompts directory exists
 os.makedirs('prompts', exist_ok=True)
@@ -123,6 +128,13 @@ with open('prompts/your_answer', 'w') as your_answer_file:
 print(f"Saving last run to {RUN_LOGS_FILE}")
 
 build_prompts(json_file_path, grid=grid, border=borders)
+
+# Ask the user if they would like to check their answer
+check_answer = input("Would you like to check your answer? (yes/no): ").strip().lower()
+if check_answer == 'yes':
+    correct = compare_answers(json_file_path)
+    # Update the last run with the correct field
+    save_last_run(json_file_path, correct)
 
 # Ask the user if they would like to check their answer
 check_answer = input("Would you like to check your answer? (yes/no): ").strip().lower()
