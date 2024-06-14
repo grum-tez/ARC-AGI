@@ -2,13 +2,13 @@
 def add_top_border(ascii_art):
     rows = ascii_art.split("\n")
     width = len(rows[0])
-    top_border = "_" * (width - 2)
+    top_border = "+" + "-" * (width - 2) + "+"
     return f"{top_border}\n{ascii_art}"
 
 def add_bottom_border(ascii_art):
     rows = ascii_art.split("\n")
     width = len(rows[0])
-    bottom_border = "‾" * (width)
+    bottom_border = "+" + "-" * (width - 2) + "+"
     return f"{ascii_art}\n{bottom_border}"
 
 def remove_top_border(ascii_art):
