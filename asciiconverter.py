@@ -105,10 +105,12 @@ def build_prompts(json_file_path, grid=True, border=False):
 
             combined_md_file.write(f"### Pattern example {index + 1}\n")
             combined_md_file.write("#### Input\n")
+            combined_md_file.write(f"canvas size: {input_dimensions}\n")
             combined_md_file.write("```ascii\n")
             combined_md_file.write(input_art)
             combined_md_file.write("```\n\n")
             combined_md_file.write("#### Output\n")
+            combined_md_file.write(f"canvas size: {output_dimensions}\n")
             combined_md_file.write("```ascii\n")
             combined_md_file.write(output_art)
             combined_md_file.write("```\n\n")
@@ -129,6 +131,7 @@ def build_prompts(json_file_path, grid=True, border=False):
 
             combined_md_file.write(f"## Challenge {index + 1}\n")
             combined_md_file.write("### Input\n")
+            combined_md_file.write(f"canvas size: {input_dimensions}\n")
             combined_md_file.write("```ascii\n")
             combined_md_file.write(input_art)
             combined_md_file.write("```\n\n")
