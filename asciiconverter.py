@@ -122,10 +122,16 @@ def build_prompts(json_file_path, grid=True, border=False):
         combined_md_file.write(inputs[len(train_array)][1])
         combined_md_file.write("\n```\n\n")
 
+        # Create an empty canvas for the challenge output
+        challenge_output_canvas = [[" " for _ in range(len(test_array[0]['output'][0]))] for _ in range(len(test_array[0]['output']))]
+        challenge_output_ascii = array_to_ascii_art(challenge_output_canvas)
+        if border:
+            challenge_output_ascii = add_borders(challenge_output_ascii)
+
         combined_md_file.write("### Challenge Output\n")
         combined_md_file.write("\nYour response must be strictly within this canvas.\n")
         combined_md_file.write("```ascii\n")
-        combined_md_file.write(outputs[len(train_array)][1])
+        combined_md_file.write(challenge_output_ascii)
         combined_md_file.write("\n```\n\n")
 
         combined_md_file.write("\nProduce a single code block with the language indicated as ascii as your response. Then reflect on that code block. Reason aloud. Consider how both how it does, and does not reflect the examples you were given. Then make a final attempt, again produce a single code block with the language indicated as ascii as your response.\n")
