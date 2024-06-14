@@ -12,10 +12,15 @@ def compare_answers(json_file_path):
     with open('prompts/your_answer', 'r') as your_answer_file:
         your_answer = your_answer_file.read().strip()
     
-    if correct_answer == your_answer:
+    correct = correct_answer == your_answer
+    if correct:
         print("Correct!")
     else:
         print("Incorrect")
+    
+    # Update the run log with the result
+    save_last_run(json_file_path, correct)
+    return correct
 
 RUN_LOGS_FILE = 'run_logs.json'
 
