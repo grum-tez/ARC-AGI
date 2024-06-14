@@ -36,6 +36,7 @@ json_files = [f for f in os.listdir(training_folder) if f.endswith('.json')]
 
 grid = True
 borders = False
+json_file_path = None
 
 if len(sys.argv) > 1:
     arg = sys.argv[1]
@@ -48,16 +49,8 @@ if len(sys.argv) > 1:
     elif arg == "borders":
         borders = True
         json_file_path = sys.argv[2] if len(sys.argv) > 2 else None
-        json_file_path = arg
 
 if not json_file_path:
-    last_run, history = get_last_run()
-    if last_run and os.path.exists(last_run):
-        json_file_path = last_run
-    else:
-        random_json_file = random.choice(json_files)
-        json_file_path = os.path.join(training_folder, random_json_file)
-else:
     last_run, history = get_last_run()
     if last_run and os.path.exists(last_run):
         json_file_path = last_run
