@@ -34,6 +34,7 @@ training_folder = 'data/training'
 json_files = [f for f in os.listdir(training_folder) if f.endswith('.json')]
 
 grid = True
+borders = False
 
 if len(sys.argv) > 1:
     arg = sys.argv[1]
@@ -43,7 +44,9 @@ if len(sys.argv) > 1:
     elif arg == "nogrid":
         grid = False
         json_file_path = sys.argv[2] if len(sys.argv) > 2 else None
-    else:
+    elif arg == "borders":
+        borders = True
+        json_file_path = sys.argv[2] if len(sys.argv) > 2 else None
         json_file_path = arg
 
 if not json_file_path:
@@ -80,14 +83,18 @@ first_element = test_array[0]
 
 # Convert the input matrix to ASCII and print it
 input_ascii = convert_grid(first_element['input']) if grid else array_to_ascii_art(first_element['input'])
+if borders:
+    input_ascii = add_borders(input_ascii)
 print("Input matrix in ASCII:")
 print(input_ascii)
 
 # Convert the output matrix to ASCII and print it
 output_ascii = convert_grid(first_element['output']) if grid else array_to_ascii_art(first_element['output'])
+if borders:
+    output_ascii = add_borders(output_ascii)
 print("Output matrix in ASCII:")
 print(output_ascii)
 
 # Run build_prompts on the chosen JSON file
 print(f"Saving last run to {RUN_LOGS_FILE}")
-build_prompts(json_file_path, grid=grid)
+build_prompts(json_file_path, grid=grid, border=borders)
