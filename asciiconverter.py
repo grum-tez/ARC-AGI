@@ -81,60 +81,39 @@ def build_prompts(json_file_path, grid=True, border=False):
         combined_md_file.write("Rules govern the transformation of the input patterns into the output patterns. Your task is to understand these rules so that you can create a new output from a given challenge input.\n\n")
         combined_md_file.write("## Pattern examples\n\n")
 
+        inputs = []
+        outputs = []
+
         for index, element in enumerate(train_array):
-            train_md_file.write(f"### Pattern example {index + 1}\n")
-            input_art = convert_grid(element['input']) if grid else array_to_ascii_art(element['input'])
-            output_art = convert_grid(element['output']) if grid else array_to_ascii_art(element['output'])
-            train_md_file.write("#### Input\n")
-            train_md_file.write("```ascii\n")
             input_art = convert_grid(element['input']) if grid else array_to_ascii_art(element['input'])
             output_art = convert_grid(element['output']) if grid else array_to_ascii_art(element['output'])
             if border:
                 input_art = add_borders(input_art)
                 output_art = add_borders(output_art)
-            train_md_file.write(input_art)
-            train_md_file.write("\n```\n\n")
+            inputs.append((index + 1, input_art))
+            outputs.append((index + 1, output_art))
 
-                
-            train_md_file.write("#### Output\n")
-            train_md_file.write("```ascii\n")
-            train_md_file.write(output_art)
-            train_md_file.write("\n```\n\n")
-
-            combined_md_file.write(f"### Pattern example {index + 1}\n")
-            combined_md_file.write("#### Input\n")
-            combined_md_file.write("```ascii\n")
-            combined_md_file.write(input_art)
-            combined_md_file.write("\n```\n\n")
-            combined_md_file.write("#### Output\n")
-            combined_md_file.write("```ascii\n")
-            combined_md_file.write(output_art)
-            combined_md_file.write("\n```\n\n")
-
-        combined_md_file.write("### Output\n")
-
-        output_dimensions = None
         for index, element in enumerate(test_array):
+            input_art = convert_grid(element['input']) if grid else array_to_ascii_art(element['input'])
             output_art = convert_grid(element['output']) if grid else array_to_ascii_art(element['output'])
-            output_dimensions = f"{len(element['output'])}x{len(element['output'][0])}"
-            test_md_file.write(f"## Challenge {index + 1}\n")
-            input_art = convert_grid(element['input']) if grid else array_to_ascii_art(element['input'])
-            input_dimensions = f"{len(element['input'])}x{len(element['input'][0])}"
-            
-            test_md_file.write("### Input\n")
-            test_md_file.write(f"input canvas size: {input_dimensions}\n")
-            test_md_file.write("```ascii\n")
-            input_art = convert_grid(element['input']) if grid else array_to_ascii_art(element['input'])
             if border:
                 input_art = add_borders(input_art)
-            test_md_file.write(input_art)
-            test_md_file.write("\n```\n\n")
+                output_art = add_borders(output_art)
+            inputs.append((index + 1 + len(train_array), input_art))
+            outputs.append((index + 1 + len(train_array), output_art))
 
-            combined_md_file.write(f"## Challenge {index + 1}\n")
-            combined_md_file.write("### Input\n")
-            combined_md_file.write(f"input canvas size: {input_dimensions}\n")
+        combined_md_file.write("## Inputs\n\n")
+        for idx, input_art in inputs:
+            combined_md_file.write(f"### Input {idx}\n")
             combined_md_file.write("```ascii\n")
             combined_md_file.write(input_art)
+            combined_md_file.write("\n```\n\n")
+
+        combined_md_file.write("## Outputs\n\n")
+        for idx, output_art in outputs:
+            combined_md_file.write(f"### Output {idx}\n")
+            combined_md_file.write("```ascii\n")
+            combined_md_file.write(output_art)
             combined_md_file.write("\n```\n\n")
 
         # Add example "output canvas" with an empty bordered canvas
