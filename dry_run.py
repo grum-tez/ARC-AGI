@@ -3,6 +3,7 @@ import os
 import random
 import sys
 from asciiconverter import array_to_ascii_art, build_prompts, convert_grid
+from altfunctions import add_borders
 
 RUN_LOGS_FILE = 'run_logs.json'
 
