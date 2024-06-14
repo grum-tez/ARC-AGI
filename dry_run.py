@@ -77,17 +77,21 @@ first_element = test_array[0]
 
 # Convert the input matrix to ASCII and print it
 input_ascii = convert_grid(first_element['input']) if grid else array_to_ascii_art(first_element['input'])
+input_dimensions = f"{len(first_element['input'])}x{len(first_element['input'][0])}"
 if borders:
     input_ascii = add_borders(input_ascii)
 print("Input matrix in ASCII:")
 print(input_ascii)
+print(f"Input dimensions: {input_dimensions}")
 
 # Convert the output matrix to ASCII and print it
 output_ascii = convert_grid(first_element['output']) if grid else array_to_ascii_art(first_element['output'])
+output_dimensions = f"{len(first_element['output'])}x{len(first_element['output'][0])}"
 if borders:
     output_ascii = add_borders(output_ascii)
 print("Output matrix in ASCII:")
 print(output_ascii)
+print(f"Output dimensions: {output_dimensions}")
 
 # Run build_prompts on the chosen JSON file
 print(f"Saving last run to {RUN_LOGS_FILE}")
