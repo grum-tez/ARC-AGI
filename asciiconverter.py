@@ -75,7 +75,7 @@ def build_prompts(json_file_path, grid=True, border=False):
 
         train_md_file.write("# Ascii Grid Art Transformation Challenge\n\n")
         train_md_file.write("## Pattern examples\n\n")
-        train_md_file.write("# Ascii Grid Art Transformation Challenge\n\n")
+        combined_md_file.write("# Ascii Grid-Artwork Transformation Challenge\n\n")
         combined_md_file.write("all the following ascii grid patterns are visual artworks within rectangular grid canvases, and therefore  MUST BE viewed with a monospaced font. This allows for the patterns, and the transformations from inputs to outputs, to be understood\n\n")
         combined_md_file.write("Rules govern the transformation of the input patterns into the output patterns. Your task is to understand these rules so that you can create a new output from a given challenge input.\n\n")
 

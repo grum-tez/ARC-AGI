@@ -1,4 +1,4 @@
-# ascii pattern recreation challenge
+# Ascii Grid Art Transformation Challenge
 
 all the following ascii grid patterns are visual artworks within rectangular grid canvases, and therefore  MUST BE viewed with a monospaced font. This allows for the patterns, and the transformations from inputs to outputs, to be understood
 
