@@ -73,9 +73,11 @@ def build_prompts(json_file_path, grid=True, border=False):
          open(test_md_path, 'w') as test_md_file, \
          open(combined_md_path, 'w') as combined_md_file:
 
-        train_md_file.write("# Pattern recreation challenge\n\n")
+        train_md_file.write("# ascii pattern recreation challenge\n\n")
+        train_md_file.write("all the following ascii grid patterns are visual artworks within rectangular grid canvases, and therefore  MUST BE viewed with a monospaced font. This allows for the patterns, and the transformations from inputs to outputs, to be understood\n\n")
         train_md_file.write("## Pattern examples\n\n")
-        combined_md_file.write("# Pattern recreation challenge\n\n")
+        combined_md_file.write("# ascii pattern recreation challenge\n\n")
+        combined_md_file.write("all the following ascii grid patterns are visual artworks within rectangular grid canvases, and therefore  MUST BE viewed with a monospaced font. This allows for the patterns, and the transformations from inputs to outputs, to be understood\n\n")
         combined_md_file.write("## Pattern examples\n\n")
 
         for index, element in enumerate(train_array):
