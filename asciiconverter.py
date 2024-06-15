@@ -17,13 +17,6 @@ def add_rank_file(ascii_art):
     # Shift the top border right by 5 spaces
     rows[1] = "     " + rows[1]
 
-    # Add file numbers along the left side, skipping the border rows
-    for i in range(1, height + 1):
-        row_index = 2 * i
-        if row_index < len(rows):
-            rows[row_index] = f"{i: >4} {rows[row_index]}"
-            if row_index + 1 < len(rows):
-                rows[row_index + 1] = "     " + rows[row_index + 1]
 
     # Adjust the bottom border to align with the top border
     rows[-1] = "" + rows[-1]
