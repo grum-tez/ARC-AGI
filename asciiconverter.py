@@ -9,14 +9,14 @@ def add_rank_file(ascii_art):
     height = len(rows) - 2  # Subtracting the border characters
 
     # Create the top rank line
-    rank_line = "   " + "".join(chr(65 + i) for i in range(width))  # 65 is the ASCII value for 'A'
+    rank_line = "     " + "".join(chr(65 + i) for i in range(width))  # 65 is the ASCII value for 'A'
 
     # Add the rank line above the top border
     rows.insert(0, rank_line)
 
     # Add file numbers along the left side
-    for i in range(1, height + 1):
-        rows[i] = f"{i: >3} {rows[i]}"
+    for i in range(1, height + 2):
+        rows[i] = f"{i: >4} {rows[i]}"
 
     return "\n".join(rows)
 
