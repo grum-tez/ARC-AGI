@@ -20,7 +20,11 @@ def add_rank_file(ascii_art):
     rows[-1] = "" + rows[-1]
 
     # Add numbers along the right-hand side, skipping the rows that are -+-+...
+    number = 1
     for i in range(1, height + 1):
+        if not (rows[i].startswith("+") or rows[i].startswith("|-+") or rows[i].startswith("|A") or rows[i].startswith("+-")):
+            rows[i] += f" {number}"
+            number += 1
         if not (rows[i].startswith("+") or rows[i].startswith("|-+") or rows[i].startswith("|A") or rows[i].startswith("+-")):
             rows[i] += f" {i}"
 
