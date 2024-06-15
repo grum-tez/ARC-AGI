@@ -112,7 +112,6 @@ first_element = test_array[0]
 input_ascii = convert_grid(first_element['input']) if grid else array_to_ascii_art(first_element['input'])
 input_dimensions = f"{len(first_element['input'])}x{len(first_element['input'][0])}"
 if borders:
-    correct_output_ascii = add_rank_file(correct_output_ascii)
     input_ascii = add_borders(input_ascii)
 print("Input matrix in ASCII:")
 print(input_ascii)
