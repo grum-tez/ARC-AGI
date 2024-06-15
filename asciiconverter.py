@@ -14,9 +14,9 @@ def add_rank_file(ascii_art):
     # Add the rank line above the top border
     rows.insert(0, rank_line)
 
-    # Add file numbers along the left side
-    for i in range(1, height + 2):
-        rows[i] = f"{i: >4} {rows[i]}"
+    # Add file numbers along the left side, skipping the border rows
+    for i in range(1, height + 1):
+        rows[2 * i - 1] = f"{i: >4} {rows[2 * i - 1]}"
 
     # Adjust the bottom border to align with the top border
     rows[-1] = "     " + rows[-1]
