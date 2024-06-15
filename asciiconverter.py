@@ -14,8 +14,6 @@ def add_rank_file(ascii_art):
     # Add the rank line above the top border
     rows.insert(0, rank_line)
 
-    # Shift the top border right by 5 spaces
-    rows[1] = "     " + rows[1]
 
 
     # Adjust the bottom border to align with the top border
