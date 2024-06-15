@@ -18,7 +18,7 @@ def add_rank_file(ascii_art):
     for i in range(1, height + 1):
         if 2 * i < len(rows):
             rows[2 * i] = f"{i: >4} {rows[2 * i]}"
-            rows[2 * i + 1] = "     " + rows[2 * i + 1]"
+            rows[2 * i + 1] = "     " + rows[2 * i + 1]
         else:
             rows[2 * i] = f"{i: >4} {rows[2 * i]}"
 
