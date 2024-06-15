@@ -60,17 +60,27 @@ grid = False
 borders = True
 json_file_path = None
 
-if len(sys.argv) > 1:
-    arg = sys.argv[1]
-    if arg == "r":
-        random_json_file = random.choice(json_files)
-        json_file_path = os.path.join(training_folder, random_json_file)
-    elif arg == "nogrid":
-        grid = False
-        json_file_path = sys.argv[2] if len(sys.argv) > 2 else None
-    elif arg == "borders":
-        borders = True
-        json_file_path = sys.argv[2] if len(sys.argv) > 2 else None
+import argparse
+
+# Argument parsing
+parser = argparse.ArgumentParser(description="Run the dry run task on a specified JSON file.")
+parser.add_argument("-j", "--json", help="Specify the JSON file name without extension.")
+parser.add_argument("-r", "--random", action="store_true", help="Select a random JSON file.")
+parser.add_argument("--nogrid", action="store_true", help="Disable grid conversion.")
+parser.add_argument("--borders", action="store_true", help="Enable borders.")
+args = parser.parse_args()
+
+if args.json:
+    json_file_path = os.path.join(training_folder, f"{args.json}.json")
+elif args.random:
+    random_json_file = random.choice(json_files)
+    json_file_path = os.path.join(training_folder, random_json_file)
+elif args.nogrid:
+    grid = False
+    json_file_path = sys.argv[2] if len(sys.argv) > 2 else None
+elif args.borders:
+    borders = True
+    json_file_path = sys.argv[2] if len(sys.argv) > 2 else None
 
 if not json_file_path:
     last_run, history = get_last_run()
