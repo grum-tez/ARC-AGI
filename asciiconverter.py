@@ -19,7 +19,7 @@ def add_rank_file(ascii_art):
         rows[i] = f"{i: >4} {rows[i]}"
 
     # Adjust the bottom border to align with the top border
-    rows[-1] = "    " + rows[-1]
+    rows[-1] = "     " + rows[-1]
 
     return "\n".join(rows)
 
