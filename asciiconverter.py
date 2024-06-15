@@ -3,6 +3,23 @@ import os
 import random
 from altfunctions import convert_grid, convert_back_grid, add_borders
 
+def add_rank_file(ascii_art):
+    rows = ascii_art.split("\n")
+    width = len(rows[0]) - 2  # Subtracting the border characters
+    height = len(rows) - 2  # Subtracting the border characters
+
+    # Create the top rank line
+    rank_line = "   " + "".join(chr(65 + i) for i in range(width))  # 65 is the ASCII value for 'A'
+
+    # Add the rank line above the top border
+    rows.insert(0, rank_line)
+
+    # Add file numbers along the left side
+    for i in range(1, height + 1):
+        rows[i] = f"{i: >3} {rows[i]}"
+
+    return "\n".join(rows)
+
 
 # Define the mapping for numbers 1 to 9 with the specified swaps
 mapping = {
@@ -89,6 +106,7 @@ def build_prompts(json_file_path, grid=True, border=False):
             if border:
                 input_art = add_borders(input_art)
                 output_art = add_borders(output_art)
+                output_art = add_rank_file(output_art)
             inputs.append((index + 1, input_art))
             outputs.append((index + 1, output_art))
 
