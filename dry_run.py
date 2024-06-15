@@ -3,7 +3,7 @@ import os
 import random
 import sys
 import datetime
-from asciiconverter import array_to_ascii_art, build_prompts, convert_grid
+from asciiconverter import array_to_ascii_art, build_prompts, convert_grid, add_rank_file
 from altfunctions import add_borders
 
 def compare_answers(json_file_path):
