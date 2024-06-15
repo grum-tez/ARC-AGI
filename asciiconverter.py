@@ -169,6 +169,7 @@ def build_prompts(json_file_path, grid=True, border=False):
     correct_output_ascii = convert_grid(test_array[0]['output']) if grid else array_to_ascii_art(test_array[0]['output'])
     if border:
         correct_output_ascii = add_borders(correct_output_ascii)
+        correct_output_ascii = add_rank_file(correct_output_ascii)
     correct_answer_path = 'prompts/correct_answer'
     with open(correct_answer_path, 'w') as correct_file:
         correct_file.write(correct_output_ascii)
