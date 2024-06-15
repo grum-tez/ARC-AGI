@@ -133,6 +133,7 @@ os.makedirs('prompts', exist_ok=True)
 # Write the correct test output to "prompts/correct_answer" file
 correct_output_ascii = convert_grid(first_element['output']) if grid else array_to_ascii_art(first_element['output'])
 if borders:
+    correct_output_ascii = add_rank_file(correct_output_ascii)
     correct_output_ascii = add_borders(correct_output_ascii)
 with open('prompts/correct_answer', 'w') as correct_file:
     correct_file.write(correct_output_ascii)
