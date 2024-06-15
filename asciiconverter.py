@@ -8,8 +8,8 @@ def add_rank_file(ascii_art):
     width = len(rows[0]) - 2  # Subtracting the border characters
     height = len(rows) - 2  # Subtracting the border characters
 
-    # Create the top rank line with 1 space shift and letters on every second space
-    rank_line = " " + " ".join(chr(65 + i) for i in range(width))
+    # Create the top rank line with letters aligned with the left border and only half the number of letters
+    rank_line = "     " + " ".join(chr(65 + i) for i in range(width // 2))
 
     # Add the rank line above the top border
     rows.insert(0, rank_line)
