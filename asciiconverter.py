@@ -19,6 +19,11 @@ def add_rank_file(ascii_art):
     # Adjust the bottom border to align with the top border
     rows[-1] = "" + rows[-1]
 
+    # Add numbers along the right-hand side, skipping the rows that are -+-+...
+    for i in range(1, height + 1):
+        if not rows[i].startswith("+"):
+            rows[i] += f" {i}"
+
     return "\n".join(rows)
 
 
