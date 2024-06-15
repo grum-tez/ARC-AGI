@@ -110,6 +110,8 @@ def build_prompts(json_file_path, grid=True, border=False):
                 input_art = add_borders(input_art)
                 output_art = add_borders(output_art)
                 output_art = add_rank_file(output_art)
+            if border:
+                input_art = add_rank_file(input_art)
             inputs.append((index + 1, input_art))
             outputs.append((index + 1, output_art))
 
@@ -119,6 +121,8 @@ def build_prompts(json_file_path, grid=True, border=False):
             if border:
                 input_art = add_borders(input_art)
                 output_art = add_borders(output_art)
+            if border:
+                input_art = add_rank_file(input_art)
             inputs.append((index + 1 + len(train_array), input_art))
             outputs.append((index + 1 + len(train_array), output_art))
 
