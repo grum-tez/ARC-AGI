@@ -9,7 +9,7 @@ def add_rank_file(ascii_art):
     height = len(rows) - 2  # Subtracting the border characters
 
     # Create the top rank line with letters shifted one space to the right and include one more letter
-    rank_line = "      " + "|".join(chr(65 + i) for i in range((width // 2) + 1))
+    rank_line = "     |" + "|".join(chr(65 + i) for i in range((width // 2) + 1))
 
     # Add the rank line above the top border
     rows.insert(0, rank_line)
