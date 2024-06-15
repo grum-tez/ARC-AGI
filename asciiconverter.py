@@ -26,7 +26,7 @@ def add_rank_file(ascii_art):
                 rows[row_index + 1] = "     " + rows[row_index + 1]
 
     # Adjust the bottom border to align with the top border
-    rows[-1] = "     " + rows[-1]
+    rows[-1] = "" + rows[-1]
 
     return "\n".join(rows)
 

@@ -56,7 +56,7 @@ def get_last_run():
 training_folder = 'data/training'
 json_files = [f for f in os.listdir(training_folder) if f.endswith('.json')]
 
-grid = False
+grid = True
 borders = True
 json_file_path = None
 
