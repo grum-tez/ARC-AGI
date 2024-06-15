@@ -25,8 +25,6 @@ def add_rank_file(ascii_art):
         if not (rows[i].startswith("+") or rows[i].startswith("|-+") or rows[i].startswith("|A") or rows[i].startswith("+-")):
             rows[i] += f" {number}"
             number += 1
-        if not (rows[i].startswith("+") or rows[i].startswith("|-+") or rows[i].startswith("|A") or rows[i].startswith("+-")):
-            rows[i] += f" {i}"
 
     return "\n".join(rows)
 
